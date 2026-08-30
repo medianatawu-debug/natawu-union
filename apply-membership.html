@@ -1,0 +1,1912 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NATAWU | Apply for Membership</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Application-specific variables, harmonised with the main NATAWU brand
+     palette defined in css/style.css (--green, --gold, --cream, etc). */
+    :root {
+      --green: #123b27;
+      --green-dark: #081f14;
+      --green-mid: #1d5a3b;
+      --red: #A31E27;
+      --tan: #d6ad55;
+      --tan-light: #F4E9D4;
+      --paper: #f7f4ed;
+      --card: #FFFFFF;
+      --ink: #17211b;
+      --ink-soft: #647168;
+      --border: #E1D6BE;
+      --danger: #B3261E;
+      --danger-bg: #FBEAE9;
+      --success: #1D6B3B;
+      --success-bg: #E8F3EC;
+      --radius: 10px;
+      --shadow: 0 2px 10px rgba(18, 59, 39, 0.08);
+      --shadow-lg: 0 12px 32px rgba(18, 59, 39, 0.16);
+      --font-display: 'Barlow Condensed', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Honeypot - off-screen, not display:none (some bots skip hidden fields) */
+    .hp-field {
+      position: absolute;
+      left: -9999px;
+      top: -9999px;
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+    }
+
+    a {
+      color: var(--green-mid);
+    }
+
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+
+    /* ===== APPLICATION INFO BAR (sits below the shared site header) ===== */
+    .app-info-bar {
+      background: linear-gradient(180deg, var(--green) 0%, var(--green-dark) 100%);
+      color: #fff;
+      padding: 22px 0 26px;
+      border-bottom: 5px solid var(--tan);
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .header-top .logo {
+      height: 64px;
+      width: 64px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 8px;
+      padding: 6px;
+      flex-shrink: 0;
+    }
+
+    .header-titles {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .header-titles .union-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--tan-light);
+      margin: 0 0 2px;
+    }
+
+    .header-titles h1 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(26px, 5vw, 38px);
+      letter-spacing: .02em;
+      margin: 0;
+      text-transform: uppercase;
+      line-height: 1.05;
+    }
+
+    .header-meta {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+      font-size: 13px;
+      color: #EDE6D6;
+    }
+
+    .header-meta strong {
+      color: #fff;
+    }
+
+    .header-instruction {
+      margin-top: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .02em;
+      color: #fff;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .header-instruction svg {
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ===== PROGRESS RAIL (signature element: a "route line") ===== */
+    .progress-wrap {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
+    }
+
+    .route-rail {
+      display: flex;
+      align-items: center;
+      padding: 14px 0 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .route-rail::-webkit-scrollbar {
+      display: none;
+    }
+
+    .route-stop {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      min-width: 64px;
+      position: relative;
+    }
+
+    .route-stop .dot {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 3px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--ink-soft);
+      transition: all .25s ease;
+      z-index: 2;
+    }
+
+    .route-stop .line {
+      position: absolute;
+      top: 13px;
+      left: -50%;
+      width: 100%;
+      height: 3px;
+      background: var(--border);
+      z-index: 1;
+    }
+
+    .route-stop:first-child .line {
+      display: none;
+    }
+
+    .route-stop .label {
+      margin-top: 6px;
+      font-size: 10.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      color: var(--ink-soft);
+      text-align: center;
+      max-width: 78px;
+    }
+
+    .route-stop.done .dot {
+      background: var(--tan);
+      border-color: var(--tan);
+      color: #fff;
+    }
+
+    .route-stop.done .line {
+      background: var(--tan);
+    }
+
+    .route-stop.active .dot {
+      background: var(--green);
+      border-color: var(--green);
+      color: #fff;
+      box-shadow: 0 0 0 4px rgba(21, 61, 37, 0.15);
+    }
+
+    .route-stop.active .label {
+      color: var(--green);
+    }
+
+    .route-stop.done .label {
+      color: var(--ink);
+    }
+
+    /* ===== LAYOUT ===== */
+    main {
+      padding: 26px 0 60px;
+    }
+
+    .form-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px 24px 30px;
+    }
+
+    @media (min-width:640px) {
+      .form-card {
+        padding: 36px 40px 40px;
+      }
+    }
+
+    .step {
+      display: none;
+    }
+
+    .step.active {
+      display: block;
+      animation: fadeIn .3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin: 0 0 4px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 26px;
+      text-transform: uppercase;
+      letter-spacing: .01em;
+      margin: 0 0 6px;
+      color: var(--green);
+      border-bottom: 3px solid var(--tan);
+      padding-bottom: 10px;
+    }
+
+    .section-desc {
+      color: var(--ink-soft);
+      font-size: 14.5px;
+      margin: 10px 0 22px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px 20px;
+    }
+
+    @media (min-width:600px) {
+      .field-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .field-grid .span-2 {
+        grid-column: 1 / -1;
+      }
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .field label .req {
+      color: var(--red);
+      margin-left: 2px;
+    }
+
+    .field .hint {
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+
+    .field input[type=text],
+    .field input[type=tel],
+    .field input[type=email],
+    .field input[type=number],
+    .field input[type=date],
+    .field select,
+    .field textarea {
+      font-family: var(--font-body);
+      font-size: 15px;
+      padding: 12px 13px;
+      min-height: 48px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      width: 100%;
+      transition: border-color .15s, box-shadow .15s;
+    }
+
+    .field textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .field.uppercase input[type=text] {
+      text-transform: uppercase;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--green-mid);
+      box-shadow: 0 0 0 3px rgba(31, 92, 55, 0.15);
+    }
+
+    .field input.invalid,
+    .field select.invalid {
+      border-color: var(--danger);
+      background: var(--danger-bg);
+    }
+
+    .field .error-msg {
+      display: none;
+      font-size: 12px;
+      color: var(--danger);
+      font-weight: 600;
+    }
+
+    .field.has-error .error-msg {
+      display: block;
+    }
+
+    .radio-row,
+    .check-row {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      padding: 6px 0 2px;
+    }
+
+    .radio-opt,
+    .check-opt {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14.5px;
+      font-weight: 500;
+      cursor: pointer;
+      background: var(--paper);
+      border: 1.5px solid var(--border);
+      padding: 10px 16px;
+      border-radius: 8px;
+      transition: all .15s;
+    }
+
+    .radio-opt input,
+    .check-opt input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--green);
+      flex-shrink: 0;
+    }
+
+    .radio-opt:has(input:checked),
+    .check-opt:has(input:checked) {
+      border-color: var(--green-mid);
+      background: var(--tan-light);
+    }
+
+    fieldset {
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    legend {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      padding: 0;
+    }
+
+    .subsection-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 19px;
+      color: var(--green-mid);
+      text-transform: uppercase;
+      letter-spacing: .02em;
+      margin: 30px 0 4px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--border);
+    }
+
+    .subsection-title:first-of-type {
+      border-top: none;
+      padding-top: 0;
+      margin-top: 6px;
+    }
+
+    .legal-box {
+      background: var(--paper);
+      border: 1.5px solid var(--border);
+      border-left: 4px solid var(--tan);
+      border-radius: 8px;
+      padding: 16px 18px;
+      font-size: 13.5px;
+      color: var(--ink);
+      max-height: 260px;
+      overflow-y: auto;
+      margin: 14px 0 18px;
+    }
+
+    .legal-box p {
+      margin: 0 0 10px;
+    }
+
+    .legal-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .legal-box h4 {
+      font-family: var(--font-display);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      margin: 0 0 8px;
+      color: var(--green);
+    }
+
+    .draft-flag {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .terms-box {
+      background: var(--paper);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 18px;
+      height: 260px;
+      overflow-y: auto;
+      font-size: 13.5px;
+      margin: 14px 0 10px;
+    }
+
+    .terms-box h4 {
+      font-family: var(--font-display);
+      font-size: 14px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin: 16px 0 6px;
+    }
+
+    .terms-box h4:first-child {
+      margin-top: 0;
+    }
+
+    .terms-box p,
+    .terms-box li {
+      margin: 0 0 8px;
+      color: var(--ink);
+    }
+
+    .scroll-hint {
+      font-size: 12px;
+      color: var(--red);
+      font-weight: 600;
+      margin: 0 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .scroll-hint.done {
+      color: var(--success);
+    }
+
+    .confirm-check {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: var(--tan-light);
+      border: 1.5px solid var(--tan);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-top: 8px;
+    }
+
+    .confirm-check input {
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      accent-color: var(--green);
+      flex-shrink: 0;
+    }
+
+    .confirm-check label {
+      font-size: 13.5px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .confirm-check.disabled {
+      opacity: .55;
+    }
+
+    /* Agreement tick (replaces the old hand-drawn signature pad) */
+    .agree-block {
+      margin: 8px 0 4px;
+    }
+
+    .agree-signing-as {
+      font-size: 13px;
+      color: var(--ink-soft);
+      margin: 0 0 10px;
+      padding: 10px 12px;
+      background: var(--paper);
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+    }
+
+    .agree-signing-as strong {
+      color: var(--ink);
+    }
+
+    /* Buttons / Nav */
+    .form-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 32px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 15px;
+      padding: 13px 26px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all .15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--green-mid);
+    }
+
+    .btn-primary:disabled {
+      background: #9AA79E;
+      cursor: not-allowed;
+    }
+
+    .btn-ghost {
+      background: none;
+      color: var(--ink);
+      border: 1.5px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--green-mid);
+      color: var(--green-mid);
+    }
+
+    .btn-spacer {
+      flex: 1;
+    }
+
+    .error-banner {
+      display: none;
+      background: var(--danger-bg);
+      border: 1.5px solid var(--danger);
+      color: var(--danger);
+      padding: 14px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .error-banner.show {
+      display: block;
+    }
+
+    /* Review screen */
+    .review-group {
+      margin-bottom: 22px;
+    }
+
+    .review-group h4 {
+      font-family: var(--font-display);
+      font-size: 17px;
+      text-transform: uppercase;
+      color: var(--green);
+      border-bottom: 2px solid var(--tan-light);
+      padding-bottom: 6px;
+      margin: 0 0 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .review-group h4 button {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: none;
+      background: none;
+      border: none;
+      color: var(--green-mid);
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .review-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+
+    .review-table td {
+      padding: 6px 4px;
+      vertical-align: top;
+      border-bottom: 1px solid #F0EBDF;
+    }
+
+    .review-table td.k {
+      color: var(--ink-soft);
+      width: 44%;
+      font-weight: 500;
+    }
+
+    .review-table td.v {
+      font-weight: 600;
+    }
+
+    /* Confirmation */
+    .confirmation {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .confirmation.show {
+      display: block;
+    }
+
+    .confirmation .icon {
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      background: var(--success-bg);
+      color: var(--success);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+    }
+
+    .confirmation h2 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin: 0 0 10px;
+    }
+
+    .confirmation p {
+      color: var(--ink-soft);
+      font-size: 15px;
+      max-width: 480px;
+      margin: 0 auto 18px;
+    }
+
+    .ref-box {
+      display: inline-block;
+      background: var(--tan-light);
+      border: 1.5px dashed var(--tan);
+      border-radius: 8px;
+      padding: 14px 28px;
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: .03em;
+      color: var(--green);
+      margin: 6px 0 26px;
+    }
+
+    @media print {
+
+      .site-header,
+      .app-info-bar,
+      .progress-wrap,
+      .form-nav,
+      .btn,
+      .footer,
+      .contact-form,
+      .error-banner,
+      #printSummaryBtn {
+        display: none !important;
+      }
+
+      body {
+        background: #fff;
+      }
+
+      .step {
+        display: none !important;
+      }
+
+      #stepPanel6 {
+        display: block !important;
+      }
+
+      .form-card {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+
+<body data-page="apply">
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="NATAWU Home"><img
+        src="images/cd23197be1ec1a989d1b0f8f8c7481d8044684c5.png" alt="NATAWU logo"><span>NATAWU</span></a>
+    <button class="mobile-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="index.html" data-page="home">HOME</a><a href="about.html" data-page="about">ABOUT US</a><a
+        href="leadership.html" data-page="leadership">LEADERSHIP</a><a href="benefits.html"
+        data-page="benefits">BENEFITS</a><a href="sectors.html" data-page="sectors">SECTORS</a><a href="gallery.html"
+        data-page="gallery">GALLERY</a><a href="forms.html" data-page="forms">FORMS</a><a href="location.html"
+        data-page="location">LOCATION</a>
+    </nav>
+    <a class="apply-nav" href="apply-membership.html">APPLY FOR MEMBERSHIP</a>
+    <div class="more-wrap"><button class="more-btn" aria-label="More menu">⋮</button>
+      <div class="more-menu"><a href="apply-membership.html">Apply for Membership</a><a href="congress.html">National
+          Congress 2026</a><a href="files/MEMBERSHIP_APPLICATION_FORM.pdf" download>Download Form</a><a
+          href="location.html">Contact Branch</a><a href="mailto:sgift8083@gmail.com">Email NATAWU</a></div>
+    </div>
+  </header>
+
+  <div class="app-info-bar">
+    <div class="wrap">
+      <div class="header-top">
+        <img class="logo" src="images/cd23197be1ec1a989d1b0f8f8c7481d8044684c5.png" alt="NATAWU logo"
+          onerror="this.style.display='none'">
+        <div class="header-titles">
+          <p class="union-name">National African Transport &amp; Allied Workers Union</p>
+          <h1>Membership Application</h1>
+        </div>
+      </div>
+      <div class="header-meta">
+        <span>Reference No: <strong>LR2/6/2/3765</strong></span>
+        <span>Tel: <strong>021 250 1641 / 073 834 8457</strong></span>
+        <span>Email: <strong>wc@natawu.net.za</strong></span>
+        <span>Community House, 1st Floor, 41 Salt River, Cape Town, 7927</span>
+      </div>
+      <div class="header-instruction">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M12 8v5M12 16h.01" stroke-linecap="round" />
+          <circle cx="12" cy="12" r="10" />
+        </svg>
+        <span>Complete every field below — your details are typed directly into your application, so there's nothing to
+          print or post.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="wrap">
+      <nav class="route-rail" id="routeRail" aria-label="Application progress"></nav>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <div class="error-banner" id="globalError" role="alert"></div>
+
+    <form id="membershipForm" novalidate autocomplete="off">
+      <!-- Honeypot field - real users never see or fill this -->
+      <div class="hp-field" aria-hidden="true">
+        <label for="hp_website">Leave this field blank</label>
+        <input type="text" id="hp_website" name="hp_website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="form-card">
+
+        <!-- ============ STEP 1: NEW MEMBER DETAILS ============ -->
+        <section class="step active" data-step="1" id="stepPanel1">
+          <p class="section-eyebrow">Section 1 of 6</p>
+          <h2 class="section-title">New Member Details</h2>
+          <p class="section-desc">Please provide your personal and employment details exactly as they appear on your
+            official documents.</p>
+
+          <div class="field-grid">
+            <div class="field uppercase">
+              <label for="province">Province <span class="req">*</span></label>
+              <select id="province" name="province" required>
+                <option value="">Select province</option>
+                <option>Eastern Cape</option>
+                <option>Free State</option>
+                <option>Gauteng</option>
+                <option>KwaZulu-Natal</option>
+                <option>Limpopo</option>
+                <option>Mpumalanga</option>
+                <option>Northern Cape</option>
+                <option>North West</option>
+                <option>Western Cape</option>
+              </select>
+              <span class="error-msg">Please select your province.</span>
+            </div>
+            <div class="field uppercase">
+              <label for="localOffice">Local Office</label>
+              <input type="text" id="localOffice" name="localOffice">
+            </div>
+
+            <div class="field uppercase">
+              <label for="surname">Surname <span class="req">*</span></label>
+              <input type="text" id="surname" name="surname" required>
+              <span class="error-msg">Surname is required.</span>
+            </div>
+            <div class="field uppercase">
+              <label for="names">Name(s) <span class="req">*</span></label>
+              <input type="text" id="names" name="names" required>
+              <span class="error-msg">Name(s) is required.</span>
+            </div>
+
+            <div class="field uppercase">
+              <label for="placeOfWork">Place of Work</label>
+              <input type="text" id="placeOfWork" name="placeOfWork">
+            </div>
+            <div class="field">
+              <label for="unionSector">Union Sector <span class="req">*</span></label>
+              <select id="unionSector" name="unionSector" required>
+                <option value="">Select sector</option>
+                <option>Transport Services</option>
+                <option>Maritime Transport</option>
+                <option>Aviation</option>
+                <option>Rail</option>
+                <option>Cleaning</option>
+                <option>Passenger</option>
+                <option>Hospitality</option>
+                <option>Retail</option>
+                <option>Construction</option>
+                <option>Farming</option>
+                <option>Laundry and Dry Cleaning</option>
+                <option>Funeral Undertaking</option>
+                <option>Sport and Recreation Clubs</option>
+                <option>Security</option>
+                <option>Road Freight</option>
+                <option>Terminal Operators</option>
+                <option>Car Parking</option>
+                <option>Other</option>
+              </select>
+              <span class="error-msg">Please select a union sector.</span>
+            </div>
+
+            <div class="field">
+              <label for="idNumber">ID Number</label>
+              <input type="text" id="idNumber" name="idNumber" inputmode="numeric" maxlength="13"
+                placeholder="13-digit RSA ID number">
+              <span class="hint">Provide your ID number OR passport number below.</span>
+              <span class="error-msg">Enter a valid 13-digit South African ID number.</span>
+            </div>
+            <div class="field uppercase">
+              <label for="passportNumber">Passport Number</label>
+              <input type="text" id="passportNumber" name="passportNumber">
+              <span class="error-msg">ID Number or Passport Number is required.</span>
+            </div>
+
+            <div class="field">
+              <label for="dateOfBirth">Date of Birth <span class="req">*</span></label>
+              <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+              <span class="error-msg">Enter a valid date of birth.</span>
+            </div>
+            <div class="field">
+              <label for="contactNumber">Contact Number <span class="req">*</span></label>
+              <input type="tel" id="contactNumber" name="contactNumber" placeholder="0XX XXX XXXX" required>
+              <span class="error-msg">Enter a valid South African contact number.</span>
+            </div>
+
+            <div class="field span-2">
+              <fieldset>
+                <legend>Gender <span class="req">*</span></legend>
+                <div class="radio-row" data-required-group="gender">
+                  <label class="radio-opt"><input type="radio" name="gender" value="Male" required> Male</label>
+                  <label class="radio-opt"><input type="radio" name="gender" value="Female"> Female</label>
+                </div>
+                <span class="error-msg" id="err_gender">Please select a gender.</span>
+              </fieldset>
+            </div>
+
+            <div class="field span-2">
+              <fieldset>
+                <legend>Disabled <span class="req">*</span></legend>
+                <div class="radio-row" data-required-group="disabled">
+                  <label class="radio-opt"><input type="radio" name="disabled" value="Yes" required> Yes</label>
+                  <label class="radio-opt"><input type="radio" name="disabled" value="No"> No</label>
+                </div>
+                <span class="error-msg" id="err_disabled">Please indicate yes or no.</span>
+              </fieldset>
+            </div>
+          </div>
+
+          <h3 class="subsection-title">Employment Details</h3>
+          <div class="field-grid">
+            <div class="field uppercase">
+              <label for="employeeNumber">Employee Number</label>
+              <input type="text" id="employeeNumber" name="employeeNumber">
+            </div>
+            <div class="field">
+              <label for="grossSalary">Gross Salary (R)</label>
+              <input type="number" id="grossSalary" name="grossSalary" min="0" step="0.01" placeholder="0.00">
+            </div>
+            <div class="field uppercase">
+              <label for="department">Department</label>
+              <input type="text" id="department" name="department">
+            </div>
+            <div class="field uppercase">
+              <label for="position">Position</label>
+              <input type="text" id="position" name="position">
+            </div>
+          </div>
+
+          <h3 class="subsection-title">Organiser / Shop Steward</h3>
+          <div class="field-grid">
+            <div class="field uppercase">
+              <label for="organiserAdmin">Organiser/Admin</label>
+              <input type="text" id="organiserAdmin" name="organiserAdmin">
+            </div>
+            <div class="field uppercase">
+              <label for="organiserAdminCode">Organiser/Admin Code</label>
+              <input type="text" id="organiserAdminCode" name="organiserAdminCode">
+            </div>
+            <div class="field">
+              <label for="organiserAdminContact">Organiser/Admin Contact Number</label>
+              <input type="tel" id="organiserAdminContact" name="organiserAdminContact">
+              <span class="error-msg">Enter a valid contact number.</span>
+            </div>
+            <div class="field uppercase">
+              <label for="shopSteward">Shop Steward</label>
+              <input type="text" id="shopSteward" name="shopSteward">
+            </div>
+            <div class="field">
+              <label for="shopStewardContact">Shop Steward Contact Number</label>
+              <input type="tel" id="shopStewardContact" name="shopStewardContact">
+              <span class="error-msg">Enter a valid contact number.</span>
+            </div>
+          </div>
+
+          <h3 class="subsection-title">Next of Kin</h3>
+          <div class="field-grid">
+            <div class="field uppercase">
+              <label for="nextOfKinName">Next of Kin Surname &amp; Name</label>
+              <input type="text" id="nextOfKinName" name="nextOfKinName">
+            </div>
+            <div class="field">
+              <label for="nextOfKinContact">Next of Kin Contact Number</label>
+              <input type="tel" id="nextOfKinContact" name="nextOfKinContact">
+              <span class="error-msg">Enter a valid contact number.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ STEP 2: COMPANY DETAILS ============ -->
+        <section class="step" data-step="2" id="stepPanel2">
+          <p class="section-eyebrow">Section 2 of 6</p>
+          <h2 class="section-title">Company Details</h2>
+          <p class="section-desc">Details of the employer / company where you are currently employed.</p>
+
+          <div class="field-grid">
+            <div class="field uppercase span-2">
+              <label for="companyName">Company Name <span class="req">*</span></label>
+              <input type="text" id="companyName" name="companyName" required>
+              <span class="error-msg">Company name is required.</span>
+            </div>
+            <div class="field uppercase">
+              <label for="companyRefNumber">Company NATAWU Reference Number</label>
+              <input type="text" id="companyRefNumber" name="companyRefNumber">
+            </div>
+            <div class="field uppercase">
+              <label for="companyCode">Code (Postal Code)</label>
+              <input type="text" id="companyCode" name="companyCode" inputmode="numeric" maxlength="10">
+            </div>
+            <div class="field uppercase span-2">
+              <label for="companyPostalAddress">Postal Address</label>
+              <textarea id="companyPostalAddress" name="companyPostalAddress"></textarea>
+            </div>
+            <div class="field">
+              <label for="companyContactNumber">Contact Number</label>
+              <input type="tel" id="companyContactNumber" name="companyContactNumber">
+              <span class="error-msg">Enter a valid contact number.</span>
+            </div>
+            <div class="field">
+              <label for="companyFaxNumber">Fax Number</label>
+              <input type="tel" id="companyFaxNumber" name="companyFaxNumber">
+            </div>
+            <div class="field uppercase">
+              <label for="companyContactPerson">Contact Person</label>
+              <input type="text" id="companyContactPerson" name="companyContactPerson">
+            </div>
+            <div class="field">
+              <label for="companyEmail">Email Address</label>
+              <input type="email" id="companyEmail" name="companyEmail">
+              <span class="error-msg">Enter a valid email address.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ STEP 3: STOP ORDER AUTHORISATION ============ -->
+        <section class="step" data-step="3" id="stepPanel3">
+          <p class="section-eyebrow">Section 3 of 6</p>
+          <h2 class="section-title">Stop Order Authorisation</h2>
+
+          <div class="legal-box" id="stopOrderText">
+            <span class="draft-flag">Draft wording &mdash; verify against original form</span>
+            <h4>Authorisation for Deduction of Trade Union Subscription</h4>
+            <p>In terms of Section 13 of the Labour Relations Act, 66 of 1995, I, the undersigned member, hereby
+              authorise my employer named in this application to deduct my trade union membership subscription/levies
+              from my salary or wages on a monthly basis, and to pay such amount over to the National African Transport
+              &amp; Allied Workers Union (NATAWU) on my behalf.</p>
+            <p>I understand that the subscription amount will be determined from time to time by NATAWU in accordance
+              with its constitution, and that my employer will act on written notice from NATAWU confirming the
+              applicable amount.</p>
+            <p>This authorisation shall remain valid and binding until I cancel it in writing, in accordance with
+              Section 13(4) of the Labour Relations Act, by giving my employer and NATAWU one (1) calendar month's
+              written notice of cancellation. This authorisation may not be cancelled during any period in which I am
+              subject to a collective agreement that requires this deduction as a condition of employment, where
+              applicable.</p>
+            <p>I authorise my employer to disclose to NATAWU such information relating to my employment as is reasonably
+              required by NATAWU to administer my membership, including but not limited to my salary, employee number,
+              department, and position.</p>
+            <p>By ticking "I agree" below, I confirm that I have read and understood this authorisation and that I am
+              agreeing to it voluntarily as my electronic signature.</p>
+          </div>
+
+          <div class="field-grid">
+            <div class="field uppercase">
+              <label for="witnessName">Witness Name <span class="hint">(optional)</span></label>
+              <input type="text" id="witnessName" name="witnessName">
+            </div>
+            <div class="field">
+              <label for="stopOrderDate">Date <span class="req">*</span></label>
+              <input type="date" id="stopOrderDate" name="stopOrderDate" required>
+              <span class="error-msg">Please confirm the date.</span>
+            </div>
+
+            <div class="field span-2">
+              <label>Your Agreement <span class="req">*</span></label>
+              <div class="agree-block">
+                <p class="agree-signing-as" id="memberAgreementName">You are agreeing to this authorisation as
+                  <strong>&mdash;</strong>. Complete Section 1 with your name to update this.
+                </p>
+                <div class="confirm-check">
+                  <input type="checkbox" id="memberAgreement" name="memberAgreement">
+                  <label for="memberAgreement">I have read and understood the Stop Order Authorisation above, and I
+                    agree to and authorise it as my electronic signature on this application.</label>
+                </div>
+              </div>
+              <span class="error-msg" id="err_memberSignature">Please tick to agree to the Stop Order Authorisation
+                before continuing.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ STEP 4: RESIGNATION FROM CURRENT UNION ============ -->
+        <section class="step" data-step="4" id="stepPanel4">
+          <p class="section-eyebrow">Section 4 of 6</p>
+          <h2 class="section-title">Resignation From Current Union</h2>
+
+          <div class="field-grid">
+            <div class="field span-2">
+              <fieldset>
+                <legend>Membership Status <span class="req">*</span></legend>
+                <div class="radio-row" data-required-group="membershipType">
+                  <label class="radio-opt"><input type="radio" name="membershipType" value="Existing Member" required>
+                    Existing Member</label>
+                  <label class="radio-opt"><input type="radio" name="membershipType" value="Update Member Details">
+                    Update Member Details</label>
+                  <label class="radio-opt"><input type="radio" name="membershipType" value="New Member"> New
+                    Member</label>
+                </div>
+                <span class="error-msg" id="err_membershipType">Please select one option.</span>
+              </fieldset>
+            </div>
+
+            <div class="field uppercase">
+              <label for="currentUnion">Current Union</label>
+              <input type="text" id="currentUnion" name="currentUnion" placeholder="Leave blank if not applicable">
+            </div>
+            <div class="field uppercase">
+              <label for="currentUnionMembershipNumber">Current Union Membership Number</label>
+              <input type="text" id="currentUnionMembershipNumber" name="currentUnionMembershipNumber">
+            </div>
+          </div>
+
+          <div class="legal-box">
+            <span class="draft-flag">Draft wording &mdash; verify against original form</span>
+            <h4>Resignation Declaration</h4>
+            <p>If I am currently a member of another trade union, I hereby give notice of my resignation from that union
+              with effect from four (4) weeks from the date of this application, in accordance with that union's
+              constitution and applicable resignation requirements. I understand that NATAWU will only process my
+              membership subscription once this resignation period has lapsed, where applicable, or once proof of
+              resignation has been provided.</p>
+            <p>I confirm that the details provided in this section are true and correct.</p>
+          </div>
+
+          <div class="field-grid">
+            <div class="field">
+              <label for="resignationDate">Date <span class="req">*</span></label>
+              <input type="date" id="resignationDate" name="resignationDate" required>
+              <span class="error-msg">Please confirm the date.</span>
+            </div>
+
+            <div class="field span-2">
+              <label>Your Agreement <span class="req">*</span></label>
+              <div class="agree-block">
+                <div class="confirm-check">
+                  <input type="checkbox" id="resignationDeclarationAccepted" name="resignationDeclarationAccepted">
+                  <label for="resignationDeclarationAccepted">I acknowledge and accept the four-week resignation
+                    declaration above, and I agree to it as my electronic signature on this application.</label>
+                </div>
+              </div>
+              <span class="error-msg" id="err_resignationDeclaration">Please tick to accept the resignation declaration
+                before continuing.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ STEP 5: TERMS, CONDITIONS & CONSENT ============ -->
+        <section class="step" data-step="5" id="stepPanel5">
+          <p class="section-eyebrow">Section 5 of 6</p>
+          <h2 class="section-title">Terms, Conditions &amp; Consent</h2>
+          <p class="section-desc">Please read the terms below in full. Scroll to the end to unlock the confirmation
+            checkbox.</p>
+
+          <span class="draft-flag">Draft wording &mdash; verify against original form</span>
+          <div class="terms-box" id="termsBox">
+            <h4>1. Membership</h4>
+            <p>Membership of NATAWU is open to all workers within the sectors it represents. Membership is subject to
+              the union's constitution, as amended from time to time, and to payment of the applicable subscription.</p>
+            <h4>2. Subscriptions</h4>
+            <p>Members agree to pay the monthly subscription determined by NATAWU, either by stop order deduction as
+              authorised in Section 3 of this application, or by direct payment where a stop order is not available.</p>
+            <h4>3. Representation</h4>
+            <p>NATAWU will represent members in matters relating to their employment in accordance with the union's
+              constitution, applicable collective agreements, and the Labour Relations Act, 66 of 1995.</p>
+            <h4>4. Resignation</h4>
+            <p>A member may resign from NATAWU by giving written notice in accordance with the union's constitution.
+              Resignation does not relieve a member of subscription obligations that arose prior to the effective date
+              of resignation.</p>
+            <h4>5. Accuracy of Information</h4>
+            <p>The applicant warrants that all information provided in this application is true, complete and correct,
+              and undertakes to inform NATAWU promptly of any change to these details.</p>
+            <h4>6. Protection of Personal Information (POPIA)</h4>
+            <p>NATAWU collects the personal information in this application &mdash; including identity, contact,
+              employment, salary and next-of-kin information &mdash; solely for the purposes of processing this
+              membership application, administering membership, and representing the member's interests as required
+              under the Protection of Personal Information Act, 4 of 2013 (POPIA).</p>
+            <p>This information will be shared only with the applicant's employer (for stop order purposes), NATAWU
+              officials and administrators directly involved in processing this application, and as otherwise required
+              by law. NATAWU will take reasonable technical and organisational measures to keep this information secure
+              and will not sell or disclose it to unrelated third parties.</p>
+            <p>The applicant has the right to request access to, correction of, or deletion of their personal
+              information held by NATAWU, subject to the union's record-keeping obligations under applicable labour
+              legislation.</p>
+            <h4>7. Consent</h4>
+            <p>By submitting this application, the applicant consents to NATAWU processing their personal information as
+              described above, and confirms that they have read and understood these terms and conditions in full.</p>
+          </div>
+          <p class="scroll-hint" id="scrollHint">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M12 5v14M5 12l7 7 7-7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Scroll to the bottom of the terms to continue
+          </p>
+
+          <div class="confirm-check disabled" id="confirmCheckWrap">
+            <input type="checkbox" id="termsAccepted" name="termsAccepted" disabled>
+            <label for="termsAccepted">I confirm that the information supplied is true and correct and that I have read
+              and accepted the NATAWU membership application terms and conditions.</label>
+          </div>
+          <div class="confirm-check" style="margin-top:12px;">
+            <input type="checkbox" id="popiaConsent" name="popiaConsent">
+            <label for="popiaConsent">I consent to NATAWU collecting and processing my personal information as described
+              in the POPIA notice above, for the purpose of processing this membership application.</label>
+          </div>
+          <span class="error-msg has-error" id="err_terms" style="display:none;">Please accept the terms and POPIA
+            consent to continue.</span>
+        </section>
+
+        <!-- ============ STEP 6: REVIEW & SUBMIT ============ -->
+        <section class="step" data-step="6" id="stepPanel6">
+          <p class="section-eyebrow">Section 6 of 6</p>
+          <h2 class="section-title">Review &amp; Submit</h2>
+          <p class="section-desc">Please check your details below before submitting. Use "Edit" to go back to any
+            section.</p>
+          <div id="reviewContent"></div>
+          <button type="button" class="btn btn-ghost" id="printSummaryBtn" style="margin-top:6px;">Print application
+            summary</button>
+        </section>
+
+        <div class="error-banner" id="stepError" role="alert"></div>
+
+        <div class="form-nav">
+          <button type="button" class="btn btn-ghost" id="btnBack">Back</button>
+          <span class="btn-spacer"></span>
+          <button type="button" class="btn btn-primary" id="btnNext">Next</button>
+          <button type="submit" class="btn btn-primary" id="btnSubmit" style="display:none;">Submit Application</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="form-card confirmation" id="confirmationScreen">
+      <div class="icon">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+      <h2>Application Submitted Successfully</h2>
+      <p>Thank you for applying for NATAWU membership. Your application has been received and will be processed by
+        NATAWU.</p>
+      <div class="ref-box" id="finalRefNumber">&mdash;</div>
+      <div>
+        <button type="button" class="btn btn-ghost" onclick="window.print()">Print confirmation</button>
+      </div>
+    </div>
+
+    <section class="form-card" id="needHelp" style="margin-top:24px;">
+      <p class="section-eyebrow">Need Assistance?</p>
+      <h2 class="section-title">Contact NATAWU</h2>
+      <p class="section-desc">Have a question before you apply, or need help completing this application? Send us a
+        message and a NATAWU officer will get back to you directly.</p>
+      <form id="contactForm" novalidate>
+        <div class="field-grid">
+          <div class="field">
+            <label for="cf_firstName">First Name <span class="req">*</span></label>
+            <input type="text" id="cf_firstName" name="firstName" required>
+          </div>
+          <div class="field">
+            <label for="cf_lastName">Last Name <span class="req">*</span></label>
+            <input type="text" id="cf_lastName" name="lastName" required>
+          </div>
+          <div class="field">
+            <label for="cf_email">Email <span class="req">*</span></label>
+            <input type="email" id="cf_email" name="email" required>
+          </div>
+          <div class="field">
+            <label for="cf_phone">Phone Number</label>
+            <input type="tel" id="cf_phone" name="phone" placeholder="0XX XXX XXXX">
+          </div>
+          <div class="field span-2">
+            <label for="cf_branch">Branch <span class="req">*</span></label>
+            <select id="cf_branch" name="branch" required>
+              <option value="">Choose a branch</option>
+              <option value="wc@natawu.net.za">Cape Town Branch (Head Office)</option>
+              <option value="kzn@natawu.net.za">KZN Branch</option>
+              <option value="gp@natawu.net.za">Gauteng Branch</option>
+            </select>
+          </div>
+          <div class="field span-2">
+            <label for="cf_message">Message</label>
+            <textarea id="cf_message" name="message" rows="4" placeholder="How can we help you?"></textarea>
+          </div>
+        </div>
+        <div class="form-nav" style="margin-top:20px;">
+          <span class="btn-spacer"></span>
+          <button class="btn btn-primary" type="submit">Send Message</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <h3>About NATAWU</h3>
+        <p>National African Transport &amp; Allied Workers Union — fighting for workers' rights across South Africa.</p>
+      </div>
+      <div>
+        <h3>Quick Links</h3><a href="about.html">About Us</a><a href="benefits.html">Benefits</a><a
+          href="sectors.html">Sectors</a><a href="gallery.html">Gallery</a><a href="forms.html">Forms</a><a
+          href="location.html">Location</a>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p><strong>NATAWU</strong></p>
+        <p>Phone: +27 (0) 21 250 1641</p>
+        <p>Mobile: +27 (0) 73 834 8457</p>
+        <p>Email: <a href="mailto:wc@natawu.net.za">wc@natawu.net.za</a></p>
+        <p>Community House, 1st Floor, 41 Salt River, Cape Town, 7927</p>
+      </div>
+      <div>
+        <h3>Follow Us</h3>
+        <p>Connect with NATAWU on social media.</p>
+        <div class="socials"></div>
+      </div>
+    </div>
+    <div class="copyright">© 2026 NATAWU. All rights reserved.</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      /* =====================================================================
+         CONFIG
+         Replace SCRIPT_URL with your deployed Google Apps Script Web App URL.
+         See SETUP-GUIDE.md for full deployment instructions.
+         ===================================================================== */
+      var CONFIG = {
+        SCRIPT_URL: "https://script.google.com/macros/s/AKfycbzqJ0F8esP885iibMern1kxSYNiz0z07gICcTrqMx3ksvAJ-fzy-NPFyMDoCwaN-sGK/exec",
+        MIN_SECONDS_BEFORE_SUBMIT: 4 // basic bot time-trap
+      };
+
+      var formLoadedAt = Date.now();
+
+      var STEPS = [
+        { n: 1, label: "Member" },
+        { n: 2, label: "Company" },
+        { n: 3, label: "Stop Order" },
+        { n: 4, label: "Resignation" },
+        { n: 5, label: "Terms" },
+        { n: 6, label: "Review" }
+      ];
+      var currentStep = 1;
+      var TOTAL_STEPS = STEPS.length;
+
+      var form = document.getElementById("membershipForm");
+      var routeRail = document.getElementById("routeRail");
+      var btnBack = document.getElementById("btnBack");
+      var btnNext = document.getElementById("btnNext");
+      var btnSubmit = document.getElementById("btnSubmit");
+      var stepError = document.getElementById("stepError");
+      var globalError = document.getElementById("globalError");
+      var confirmationScreen = document.getElementById("confirmationScreen");
+
+      /* ---------------- Route rail (progress) ---------------- */
+      function buildRail() {
+        routeRail.innerHTML = "";
+        STEPS.forEach(function (s) {
+          var stop = document.createElement("div");
+          stop.className = "route-stop";
+          stop.id = "railStop" + s.n;
+          stop.innerHTML = '<span class="line"></span><span class="dot">' + s.n + '</span><span class="label">' + s.label + '</span>';
+          routeRail.appendChild(stop);
+        });
+      }
+      function updateRail() {
+        STEPS.forEach(function (s) {
+          var el = document.getElementById("railStop" + s.n);
+          el.classList.remove("active", "done");
+          if (s.n < currentStep) el.classList.add("done");
+          else if (s.n === currentStep) el.classList.add("active");
+        });
+      }
+      buildRail();
+
+      /* ---------------- Validators ---------------- */
+      function validSAID(id) {
+        if (!/^\d{13}$/.test(id)) return false;
+        var mm = +id.slice(2, 4), dd = +id.slice(4, 6);
+        if (mm < 1 || mm > 12) return false;
+        if (dd < 1 || dd > 31) return false;
+        var sum = 0, alt = false;
+        for (var i = id.length - 1; i >= 0; i--) {
+          var n = +id[i];
+          if (alt) { n *= 2; if (n > 9) n -= 9; }
+          sum += n; alt = !alt;
+        }
+        return sum % 10 === 0;
+      }
+      function validPhone(v) {
+        if (!v) return true; // optional fields handled separately via required attr
+        return /^(\+27|0)\d{9}$/.test(v.replace(/\s/g, ""));
+      }
+      function validEmail(v) {
+        if (!v) return true;
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      }
+      function validPastDate(v) {
+        if (!v) return false;
+        var d = new Date(v + "T00:00:00");
+        if (isNaN(d.getTime())) return false;
+        return d.getTime() <= Date.now();
+      }
+
+      /* Uppercase-on-blur for fields marked .uppercase */
+      document.querySelectorAll(".field.uppercase input[type=text]").forEach(function (inp) {
+        inp.addEventListener("blur", function () { inp.value = inp.value.toUpperCase(); });
+      });
+
+      /* Default dates to today */
+      var today = new Date().toISOString().slice(0, 10);
+      ["stopOrderDate", "resignationDate"].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el && !el.value) el.value = today;
+      });
+
+      /* ---------------- Signing-as helper ---------------- */
+      /* Reflects the applicant's name from Section 1 into the Section 3
+         agreement tick, so the electronic signature is clearly attributable. */
+      var memberAgreementName = document.getElementById("memberAgreementName");
+      function updateSigningAs() {
+        var names = (document.getElementById("names").value || "").trim();
+        var surname = (document.getElementById("surname").value || "").trim();
+        var full = (names + " " + surname).trim();
+        memberAgreementName.innerHTML = full
+          ? "You are agreeing to this authorisation as <strong>" + escapeHtml(full) + "</strong>."
+          : "You are agreeing to this authorisation as <strong>&mdash;</strong>. Complete Section 1 with your name to update this.";
+      }
+      ["names", "surname"].forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) el.addEventListener("input", updateSigningAs);
+      });
+
+      /* ---------------- Terms scroll-to-unlock ---------------- */
+      var termsBox = document.getElementById("termsBox");
+      var termsCheckbox = document.getElementById("termsAccepted");
+      var confirmCheckWrap = document.getElementById("confirmCheckWrap");
+      var scrollHint = document.getElementById("scrollHint");
+      termsBox.addEventListener("scroll", function () {
+        var atBottom = termsBox.scrollHeight - termsBox.scrollTop <= termsBox.clientHeight + 12;
+        if (atBottom) {
+          termsCheckbox.disabled = false;
+          confirmCheckWrap.classList.remove("disabled");
+          scrollHint.classList.add("done");
+          scrollHint.textContent = "Thank you — you may now confirm below.";
+        }
+      });
+
+      /* ---------------- Field-level validation ---------------- */
+      function setFieldError(input, on) {
+        var field = input.closest(".field");
+        if (field) field.classList.toggle("has-error", !!on);
+        input.classList.toggle("invalid", !!on);
+      }
+      function setGroupError(groupName, on) {
+        var err = document.getElementById("err_" + groupName);
+        if (err) err.style.display = on ? "block" : "none";
+      }
+
+      function validateStep(n) {
+        var panel = document.getElementById("stepPanel" + n);
+        var ok = true;
+        var firstInvalid = null;
+
+        function fail(input) {
+          ok = false;
+          setFieldError(input, true);
+          if (!firstInvalid) firstInvalid = input;
+        }
+        function pass(input) { setFieldError(input, false); }
+
+        panel.querySelectorAll("input[required], select[required]").forEach(function (input) {
+          if (input.type === "radio") return; // handled via groups below
+          if (!input.value || !input.value.trim()) { fail(input); } else { pass(input); }
+        });
+
+        // Radio groups
+        panel.querySelectorAll("[data-required-group]").forEach(function (group) {
+          var name = group.getAttribute("data-required-group");
+          var checked = panel.querySelector('input[name="' + name + '"]:checked');
+          if (!checked) { ok = false; setGroupError(name, true); }
+          else { setGroupError(name, false); }
+        });
+
+        // Step-specific rules
+        if (n === 1) {
+          var idInput = document.getElementById("idNumber");
+          var passportInput = document.getElementById("passportNumber");
+          var hasId = idInput.value.trim().length > 0;
+          var hasPassport = passportInput.value.trim().length > 0;
+          if (!hasId && !hasPassport) {
+            fail(passportInput);
+          } else if (hasId && !validSAID(idInput.value.trim())) {
+            fail(idInput);
+          } else {
+            pass(idInput); pass(passportInput);
+          }
+
+          var dob = document.getElementById("dateOfBirth");
+          if (!validPastDate(dob.value)) fail(dob); else pass(dob);
+
+          ["contactNumber", "organiserAdminContact", "shopStewardContact", "nextOfKinContact"].forEach(function (id) {
+            var el = document.getElementById(id);
+            var required = el.hasAttribute("required");
+            if ((required && !el.value.trim()) || (el.value.trim() && !validPhone(el.value.trim()))) {
+              fail(el);
+            } else { pass(el); }
+          });
+        }
+
+        if (n === 2) {
+          ["companyContactNumber", "companyFaxNumber"].forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el.value.trim() && !validPhone(el.value.trim())) fail(el); else pass(el);
+          });
+          var email = document.getElementById("companyEmail");
+          if (email.value.trim() && !validEmail(email.value.trim())) fail(email); else pass(email);
+        }
+
+        if (n === 3) {
+          var memberAgreementBox = document.getElementById("memberAgreement");
+          if (!memberAgreementBox.checked) {
+            ok = false;
+            document.getElementById("err_memberSignature").style.display = "block";
+          } else {
+            document.getElementById("err_memberSignature").style.display = "none";
+          }
+          var soDate = document.getElementById("stopOrderDate");
+          if (!soDate.value) fail(soDate); else pass(soDate);
+        }
+
+        if (n === 4) {
+          var resignationBox = document.getElementById("resignationDeclarationAccepted");
+          var errResignation = document.getElementById("err_resignationDeclaration");
+          if (!resignationBox.checked) {
+            ok = false;
+            errResignation.style.display = "block";
+          } else {
+            errResignation.style.display = "none";
+          }
+        }
+
+        if (n === 5) {
+          var termsOk = document.getElementById("termsAccepted").checked;
+          var popiaOk = document.getElementById("popiaConsent").checked;
+          var err = document.getElementById("err_terms");
+          if (!termsOk || !popiaOk) {
+            ok = false;
+            err.style.display = "block";
+          } else {
+            err.style.display = "none";
+          }
+        }
+
+        if (!ok && firstInvalid) {
+          firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" });
+          firstInvalid.focus({ preventScroll: true });
+        }
+        return ok;
+      }
+
+      /* ---------------- Step navigation ---------------- */
+      function showStep(n) {
+        document.querySelectorAll(".step").forEach(function (s) { s.classList.remove("active"); });
+        document.getElementById("stepPanel" + n).classList.add("active");
+        currentStep = n;
+        updateRail();
+        btnBack.style.visibility = (n === 1) ? "hidden" : "visible";
+        btnNext.style.display = (n === TOTAL_STEPS) ? "none" : "inline-flex";
+        btnSubmit.style.display = (n === TOTAL_STEPS) ? "inline-flex" : "none";
+        stepError.classList.remove("show");
+        if (n === TOTAL_STEPS) buildReview();
+        window.scrollTo({ top: document.querySelector(".progress-wrap").offsetTop - 8, behavior: "smooth" });
+      }
+
+      btnNext.addEventListener("click", function () {
+        if (!validateStep(currentStep)) {
+          stepError.textContent = "Please correct the highlighted fields before continuing.";
+          stepError.classList.add("show");
+          return;
+        }
+        if (currentStep < TOTAL_STEPS) showStep(currentStep + 1);
+      });
+      btnBack.addEventListener("click", function () {
+        if (currentStep > 1) showStep(currentStep - 1);
+      });
+
+      /* Allow jumping back via rail dots for already-completed steps */
+      routeRail.addEventListener("click", function (e) {
+        var stop = e.target.closest(".route-stop");
+        if (!stop) return;
+        var n = parseInt(stop.id.replace("railStop", ""), 10);
+        if (n < currentStep) showStep(n);
+      });
+
+      /* ---------------- Review screen ---------------- */
+      var REVIEW_GROUPS = [
+        {
+          title: "New Member Details", step: 1, fields: [
+            ["province", "Province"], ["localOffice", "Local Office"], ["surname", "Surname"], ["names", "Name(s)"],
+            ["placeOfWork", "Place of Work"], ["unionSector", "Union Sector"], ["idNumber", "ID Number"],
+            ["passportNumber", "Passport Number"], ["dateOfBirth", "Date of Birth"], ["gender", "Gender"],
+            ["disabled", "Disabled"], ["contactNumber", "Contact Number"], ["employeeNumber", "Employee Number"],
+            ["grossSalary", "Gross Salary"], ["department", "Department"], ["position", "Position"],
+            ["organiserAdmin", "Organiser/Admin"], ["organiserAdminCode", "Organiser/Admin Code"],
+            ["organiserAdminContact", "Organiser/Admin Contact"], ["shopSteward", "Shop Steward"],
+            ["shopStewardContact", "Shop Steward Contact"], ["nextOfKinName", "Next of Kin"],
+            ["nextOfKinContact", "Next of Kin Contact"]
+          ]
+        },
+        {
+          title: "Company Details", step: 2, fields: [
+            ["companyName", "Company Name"], ["companyRefNumber", "Company NATAWU Ref."],
+            ["companyPostalAddress", "Postal Address"], ["companyCode", "Code"],
+            ["companyContactNumber", "Contact Number"], ["companyFaxNumber", "Fax Number"],
+            ["companyContactPerson", "Contact Person"], ["companyEmail", "Email Address"]
+          ]
+        },
+        {
+          title: "Stop Order Authorisation", step: 3, fields: [
+            ["witnessName", "Witness Name"], ["stopOrderDate", "Date"]
+          ]
+        },
+        {
+          title: "Resignation From Current Union", step: 4, fields: [
+            ["membershipType", "Membership Status"], ["currentUnion", "Current Union"],
+            ["currentUnionMembershipNumber", "Current Union Membership No."],
+            ["resignationDeclarationAccepted", "Declaration Accepted"], ["resignationDate", "Date"]
+          ]
+        }
+      ];
+
+      function getVal(name) {
+        var els = form.querySelectorAll('[name="' + name + '"]');
+        if (!els.length) return "";
+        if (els[0].type === "radio") {
+          var checked = form.querySelector('[name="' + name + '"]:checked');
+          return checked ? checked.value : "";
+        }
+        if (els[0].type === "checkbox") {
+          return els[0].checked ? "Yes" : "No";
+        }
+        return els[0].value || "";
+      }
+
+      function buildReview() {
+        var container = document.getElementById("reviewContent");
+        container.innerHTML = "";
+        REVIEW_GROUPS.forEach(function (group) {
+          var wrap = document.createElement("div");
+          wrap.className = "review-group";
+          var h = document.createElement("h4");
+          h.innerHTML = group.title + ' <button type="button" data-goto="' + group.step + '">Edit</button>';
+          wrap.appendChild(h);
+          var table = document.createElement("table");
+          table.className = "review-table";
+          group.fields.forEach(function (f) {
+            var val = getVal(f[0]) || "\u2014";
+            var tr = document.createElement("tr");
+            tr.innerHTML = '<td class="k">' + f[1] + '</td><td class="v">' + escapeHtml(val) + '</td>';
+            table.appendChild(tr);
+          });
+          wrap.appendChild(table);
+          container.appendChild(wrap);
+        });
+
+        // Agreements + consent summary
+        var sigWrap = document.createElement("div");
+        sigWrap.className = "review-group";
+        sigWrap.innerHTML = '<h4>Agreements &amp; Consent</h4>';
+        var table2 = document.createElement("table");
+        table2.className = "review-table";
+        var memberAgreed = document.getElementById("memberAgreement").checked ? "Agreed (electronic signature)" : "Not agreed";
+        var resignationAgreed = document.getElementById("resignationDeclarationAccepted").checked ? "Agreed (electronic signature)" : "Not agreed";
+        var terms = document.getElementById("termsAccepted").checked ? "Accepted" : "Not accepted";
+        var popia = document.getElementById("popiaConsent").checked ? "Accepted" : "Not accepted";
+        table2.innerHTML =
+          '<tr><td class="k">Stop Order Authorisation</td><td class="v">' + memberAgreed + '</td></tr>' +
+          '<tr><td class="k">Resignation Declaration</td><td class="v">' + resignationAgreed + '</td></tr>' +
+          '<tr><td class="k">Terms &amp; Conditions</td><td class="v">' + terms + '</td></tr>' +
+          '<tr><td class="k">POPIA Consent</td><td class="v">' + popia + '</td></tr>';
+        sigWrap.appendChild(table2);
+        container.appendChild(sigWrap);
+      }
+
+      function escapeHtml(str) {
+        var d = document.createElement("div");
+        d.textContent = str;
+        return d.innerHTML;
+      }
+
+      document.getElementById("reviewContent").addEventListener("click", function (e) {
+        var btn = e.target.closest("[data-goto]");
+        if (!btn) return;
+        showStep(parseInt(btn.getAttribute("data-goto"), 10));
+      });
+
+      document.getElementById("printSummaryBtn").addEventListener("click", function () {
+        window.print();
+      });
+
+      /* ---------------- Submission ---------------- */
+      var FIELD_NAMES = [
+        "province", "localOffice", "surname", "names", "placeOfWork", "unionSector", "idNumber", "passportNumber",
+        "dateOfBirth", "gender", "disabled", "contactNumber", "employeeNumber", "grossSalary", "department", "position",
+        "organiserAdmin", "organiserAdminCode", "organiserAdminContact", "shopSteward", "shopStewardContact",
+        "nextOfKinName", "nextOfKinContact",
+        "companyName", "companyRefNumber", "companyPostalAddress", "companyCode", "companyContactNumber",
+        "companyFaxNumber", "companyContactPerson", "companyEmail",
+        "memberAgreement", "witnessName", "stopOrderDate",
+        "membershipType", "currentUnion", "currentUnionMembershipNumber", "resignationDeclarationAccepted",
+        "resignationDate",
+        "termsAccepted", "popiaConsent"
+      ];
+
+      function collectPayload() {
+        var data = {};
+        FIELD_NAMES.forEach(function (name) { data[name] = getVal(name); });
+        data.fullName = (data.names + " " + data.surname).trim();
+        return data;
+      }
+
+      var submitting = false;
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (submitting) return; // prevent double submission
+        if (!validateStep(5)) { showStep(5); return; }
+        if (!validateStep(4)) { showStep(4); return; }
+        if (!validateStep(3)) { showStep(3); return; }
+        if (!validateStep(2)) { showStep(2); return; }
+        if (!validateStep(1)) { showStep(1); return; }
+
+        // Basic bot protections
+        var honeypotFilled = document.getElementById("hp_website").value.trim().length > 0;
+        var tooFast = (Date.now() - formLoadedAt) < (CONFIG.MIN_SECONDS_BEFORE_SUBMIT * 1000);
+
+        submitting = true;
+        btnSubmit.disabled = true;
+        btnSubmit.textContent = "Submitting...";
+        globalError.classList.remove("show");
+
+        if (honeypotFilled) {
+          // Silently treat as handled without contacting the backend.
+          setTimeout(function () { showConfirmation("N/A"); }, 500);
+          return;
+        }
+        if (tooFast) {
+          submitting = false;
+          btnSubmit.disabled = false;
+          btnSubmit.textContent = "Submit Application";
+          globalError.textContent = "Please take a moment to review your application before submitting.";
+          globalError.classList.add("show");
+          return;
+        }
+
+        if (!CONFIG.SCRIPT_URL || CONFIG.SCRIPT_URL.indexOf("PASTE_YOUR") === 0) {
+          submitting = false;
+          btnSubmit.disabled = false;
+          btnSubmit.textContent = "Submit Application";
+          globalError.textContent = "This form is not yet connected to the NATAWU backend (Google Apps Script URL missing). See SETUP-GUIDE.md.";
+          globalError.classList.add("show");
+          return;
+        }
+
+        var payload = collectPayload();
+
+        fetch(CONFIG.SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" }, // avoids CORS preflight against Apps Script
+          body: JSON.stringify(payload)
+        })
+          .then(function (res) { return res.json(); })
+          .then(function (result) {
+            if (result && result.success) {
+              showConfirmation(result.applicationNumber || "PENDING");
+            } else {
+              throw new Error((result && result.message) || "Submission failed.");
+            }
+          })
+          .catch(function (err) {
+            submitting = false;
+            btnSubmit.disabled = false;
+            btnSubmit.textContent = "Submit Application";
+            globalError.textContent = "We could not submit your application (" + err.message + "). Please check your connection and try again.";
+            globalError.classList.add("show");
+            globalError.scrollIntoView({ behavior: "smooth", block: "center" });
+          });
+      });
+
+      function showConfirmation(refNumber) {
+        document.getElementById("membershipForm").style.display = "none";
+        document.querySelector(".progress-wrap").style.display = "none";
+        document.getElementById("finalRefNumber").textContent = refNumber;
+        confirmationScreen.classList.add("show");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      /* ---------------- Init ---------------- */
+      updateSigningAs();
+      showStep(1);
+    })();
+  </script>
+</body>
+
+</html>
