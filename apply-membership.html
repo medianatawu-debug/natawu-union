@@ -362,8 +362,7 @@
 
   /* =====================================================================
      CONFIG
-     Replace SCRIPT_URL with your deployed Google Apps Script Web App URL.
-     See SETUP-GUIDE.md for full deployment instructions.
+     SCRIPT_URL is your deployed Google Apps Script Web App URL.
      MAX_UPLOAD_MB must match CONFIG.MAX_UPLOAD_MB in google-apps-script.gs.
      ===================================================================== */
   var CONFIG = {
@@ -373,7 +372,8 @@
   };
 
   function backendReady(){
-    return CONFIG.SCRIPT_URL && CONFIG.SCRIPT_URL.indexOf("https://script.google.com/macros/s/AKfycbx6ddkELnZJk-Zqj5bIKq6D-v1D-1a3X8nBUmethqg5YlOQyLK8UBs32ZGvHV9k524V/exec") !== 0;
+    // A real deployed Apps Script Web App URL always starts with this prefix.
+    return !!CONFIG.SCRIPT_URL && CONFIG.SCRIPT_URL.indexOf("https://script.google.com/") === 0;
   }
 
   function postToBackend(payload){
