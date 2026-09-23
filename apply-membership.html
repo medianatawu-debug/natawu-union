@@ -1,587 +1,1069 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NATAWU | Apply for Membership</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --green:#153D25;
-    --green-dark:#0C2617;
-    --green-mid:#1F5C37;
-    --red:#A31E27;
-    --tan:#C69A54;
-    --tan-light:#F4E9D4;
-    --paper:#FAF7F0;
-    --card:#FFFFFF;
-    --ink:#1E2420;
-    --ink-soft:#54594F;
-    --border:#E1D6BE;
-    --danger:#B3261E;
-    --danger-bg:#FBEAE9;
-    --success:#1D6B3B;
-    --success-bg:#E8F3EC;
-    --radius:10px;
-    --shadow:0 2px 10px rgba(21,61,37,0.08);
-    --font-display:'Barlow Condensed', sans-serif;
-    --font-body:'Inter', sans-serif;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    font-family:var(--font-body);
-    background:var(--paper);
-    color:var(--ink);
-    line-height:1.5;
-    -webkit-font-smoothing:antialiased;
-  }
-  img{max-width:100%;display:block;}
-  a{color:var(--green-mid);}
-  .wrap{max-width:820px;margin:0 auto;padding:0 18px;}
-
-  /* ===== HEADER ===== */
-  .site-header{
-    background:linear-gradient(180deg,var(--green) 0%, var(--green-dark) 100%);
-    color:#fff;
-    padding:22px 0 26px;
-    border-bottom:5px solid var(--tan);
-  }
-  .header-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
-  .header-top .logo{height:64px;width:64px;object-fit:contain;background:#fff;border-radius:8px;padding:6px;flex-shrink:0;}
-  .header-titles{flex:1;min-width:200px;}
-  .header-titles .union-name{
-    font-family:var(--font-display);font-weight:600;font-size:15px;letter-spacing:.04em;
-    text-transform:uppercase;color:var(--tan-light);margin:0 0 2px;
-  }
-  .header-titles h1{
-    font-family:var(--font-display);font-weight:800;font-size:clamp(26px,5vw,38px);
-    letter-spacing:.02em;margin:0;text-transform:uppercase;line-height:1.05;
-  }
-  .header-meta{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px 22px;font-size:13px;color:#EDE6D6;}
-  .header-meta strong{color:#fff;}
-  .header-instruction{
-    margin-top:14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.22);
-    border-radius:8px;padding:12px 16px;font-size:13.5px;font-weight:600;letter-spacing:.01em;
-    color:#fff;display:flex;gap:10px;align-items:flex-start;line-height:1.5;
-  }
-  .header-instruction svg{flex-shrink:0;margin-top:2px;}
-
-  main{padding:30px 0 60px;}
-
-  .intro{text-align:center;margin:0 0 26px;}
-  .intro h2{
-    font-family:var(--font-display);font-weight:700;font-size:26px;text-transform:uppercase;
-    color:var(--green);margin:0 0 8px;
-  }
-  .intro p{color:var(--ink-soft);font-size:15px;max-width:640px;margin:0 auto;}
-
-  /* ===== Card ===== */
-  .form-card{
-    background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
-    box-shadow:var(--shadow);padding:26px 22px 30px;margin-bottom:26px;
-  }
-  @media (min-width:640px){ .form-card{padding:34px 38px 38px;} }
-
-  /* ===== Steps list ===== */
-  .steps-list{list-style:none;margin:0 0 24px;padding:0;display:grid;gap:12px;}
-  .steps-list li{
-    display:flex;gap:14px;align-items:flex-start;background:var(--paper);border:1.5px solid var(--border);
-    border-radius:10px;padding:14px 16px;font-size:14px;color:var(--ink);
-  }
-  .steps-list .num{
-    flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--green);color:#fff;
-    font-family:var(--font-display);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;
-  }
-  .steps-list b{color:var(--green);}
-
-  .download-row{
-    display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--tan-light);
-    border:1.5px dashed var(--tan);border-radius:10px;padding:16px 18px;margin:0 0 26px;
-  }
-  .download-row p{margin:0;font-size:13.5px;color:var(--ink);flex:1;min-width:180px;}
-
-  .section-label{
-    font-family:var(--font-display);font-weight:700;font-size:19px;text-transform:uppercase;
-    letter-spacing:.01em;margin:0 0 16px;color:var(--green);border-bottom:3px solid var(--tan);padding-bottom:9px;
-  }
-
-  /* ===== Fields ===== */
-  .field-grid{display:grid;grid-template-columns:1fr;gap:16px 20px;}
-  @media (min-width:600px){
-    .field-grid{grid-template-columns:1fr 1fr;}
-    .field-grid .span-2{grid-column:1 / -1;}
-  }
-  .field{display:flex;flex-direction:column;gap:6px;}
-  .field label{font-size:13px;font-weight:600;color:var(--ink);}
-  .field label .req{color:var(--red);margin-left:2px;}
-  .field label .hint{font-weight:500;color:var(--ink-soft);font-size:12px;}
-  .field input[type=text],.field input[type=tel],.field input[type=email],.field select{
-    font-family:var(--font-body);font-size:15px;padding:12px 13px;min-height:48px;
-    border:1.5px solid var(--border);border-radius:8px;background:#fff;color:var(--ink);
-    width:100%;transition:border-color .15s, box-shadow .15s;
-  }
-  .field input:focus,.field select:focus{
-    outline:none;border-color:var(--green-mid);box-shadow:0 0 0 3px rgba(31,92,55,0.15);
-  }
-  .field input.invalid,.field select.invalid{border-color:var(--danger);background:var(--danger-bg);}
-  .field .error-msg{display:none;font-size:12px;color:var(--danger);font-weight:600;}
-  .field.has-error .error-msg{display:block;}
-
-  .divider{height:1px;background:var(--border);margin:28px 0;}
-
-  /* ===== File upload dropzone ===== */
-  .dropzone{
-    border:2px dashed var(--border);border-radius:10px;padding:24px 18px;text-align:center;
-    background:var(--paper);cursor:pointer;transition:border-color .15s, background .15s;
-  }
-  .dropzone:hover,.dropzone.drag{border-color:var(--green-mid);background:var(--tan-light);}
-  .dropzone input[type=file]{display:none;}
-  .dropzone .dz-icon{margin:0 auto 8px;color:var(--green-mid);}
-  .dropzone .dz-text{font-size:14px;font-weight:600;color:var(--ink);}
-  .dropzone .dz-hint{font-size:12.5px;color:var(--ink-soft);margin-top:4px;}
-  .file-chosen{
-    display:none;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;
-    background:#fff;border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13.5px;
-  }
-  .file-chosen.show{display:flex;}
-  .file-chosen .name{font-weight:700;color:var(--ink);word-break:break-all;}
-  .file-chosen .size{color:var(--ink-soft);font-size:12px;}
-  .file-chosen button{
-    background:none;border:none;color:var(--red);font-weight:700;cursor:pointer;font-size:12.5px;
-    text-decoration:underline;flex-shrink:0;
-  }
-
-  /* ===== Buttons ===== */
-  .btn{
-    font-family:var(--font-body);font-weight:700;font-size:15px;padding:14px 26px;border-radius:8px;
-    border:none;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;
-    justify-content:center;gap:8px;width:100%;
-  }
-  @media (min-width:480px){ .btn{width:auto;} }
-  .btn-primary{background:var(--green);color:#fff;}
-  .btn-primary:hover{background:var(--green-mid);}
-  .btn-primary:disabled{background:#9AA79E;cursor:not-allowed;}
-  .btn-gold{background:var(--tan);color:#241B08;}
-  .btn-gold:hover{background:#D6B26C;}
-
-  .form-actions{margin-top:26px;}
-
-  /* ===== Banners ===== */
-  .error-banner{
-    display:none;background:var(--danger-bg);border:1.5px solid var(--danger);color:var(--danger);
-    padding:14px 16px;border-radius:8px;font-size:14px;font-weight:600;margin-bottom:20px;
-  }
-  .error-banner.show{display:block;}
-
-  /* ===== Confirmation ===== */
-  .confirmation{display:none;text-align:center;padding:6px 0 4px;}
-  .confirmation.show{display:block;}
-  .confirmation .icon{
-    width:60px;height:60px;border-radius:50%;background:var(--success-bg);color:var(--success);
-    display:flex;align-items:center;justify-content:center;margin:0 auto 14px;
-  }
-  .confirmation h4{font-family:var(--font-display);font-size:22px;text-transform:uppercase;color:var(--green);margin:0 0 8px;}
-  .confirmation p{color:var(--ink-soft);font-size:14.5px;max-width:460px;margin:0 auto 16px;}
-  .ref-box{
-    display:inline-block;background:var(--tan-light);border:1.5px dashed var(--tan);border-radius:8px;
-    padding:12px 24px;font-family:var(--font-display);font-size:20px;font-weight:700;letter-spacing:.03em;
-    color:var(--green);margin:2px 0 18px;
-  }
-  .confirmation .btn-ghost{
-    background:none;border:1.5px solid var(--border);color:var(--ink);font-weight:600;padding:10px 18px;
-    border-radius:8px;cursor:pointer;font-size:13.5px;
-  }
-  .confirmation .btn-ghost:hover{border-color:var(--green-mid);color:var(--green-mid);}
-  .form-body.hide{display:none;}
-
-  .help-note{
-    text-align:center;font-size:13.5px;color:var(--ink-soft);margin-top:6px;
-    background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;
-  }
-  .help-note strong{color:var(--green);}
-
-  footer.site-footer{background:var(--green-dark);color:#CFE0D3;padding:26px 0;font-size:12.5px;text-align:center;}
-  footer.site-footer strong{color:#fff;}
-</style>
-</head>
-<body>
-<div style="background:#123b27;color:#fff;padding:10px 16px;text-align:center;font:700 13px system-ui"><a href="index.html" style="color:#fff">&larr; Back to NATAWU Website</a> &nbsp; | &nbsp; <a href="forms.html" style="color:#f0d58b">Forms</a></div>
-
-<header class="site-header">
-  <div class="wrap">
-    <div class="header-top">
-      <img class="logo" src="images/cd23197be1ec1a989d1b0f8f8c7481d8044684c5.png" alt="NATAWU logo" onerror="this.style.display='none'">
-      <div class="header-titles">
-        <p class="union-name">National African Transport &amp; Allied Workers Union</p>
-        <h1>Apply for Membership</h1>
-      </div>
-    </div>
-    <div class="header-meta">
-      <span>Reference No: <strong>LR2/6/2/3765</strong></span>
-      <span>Tel: <strong>021 250 1641 / 073 834 8457</strong></span>
-      <span>Email: <strong>wc@natawu.net.za</strong></span>
-      <span>Community House, 1st Floor, 41 Salt River, Cape Town, 7927</span>
-    </div>
-    <div class="header-instruction">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 8v5M12 16h.01" stroke-linecap="round"/><circle cx="12" cy="12" r="10"/></svg>
-      <span>Fill in your details, attach your completed form, then press Submit. That's it — one step.</span>
-    </div>
-  </div>
-</header>
-
-<main class="wrap">
-  <div class="intro">
-    <h2>Membership Application</h2>
-    <p>Download the official form, fill it in by hand, then come back here to enter your details and attach it. You'll get a reference number as soon as you submit.</p>
-  </div>
-
-  <section class="form-card" id="applicationCard">
-    <p class="section-label" style="border-bottom:none;margin-bottom:6px;">Before You Start</p>
-    <ol class="steps-list">
-      <li><span class="num">1</span><span><b>Download</b> the Membership Application Form using the button below.</span></li>
-      <li><span class="num">2</span><span><b>Print and complete</b> it in CAPITAL LETTERS using BLACK ink, then sign it.</span></li>
-      <li><span class="num">3</span><span><b>Take a clear photo</b> (or scan) of every completed page — make sure the writing is easy to read.</span></li>
-      <li><span class="num">4</span><span><b>Fill in the details below</b>, attach your photo or PDF, and press Submit.</span></li>
-    </ol>
-
-    <div class="download-row">
-      <p>Membership Application Form &middot; PDF, complete offline</p>
-      <a class="btn btn-gold" href="files/MEMBERSHIP_APPLICATION_FORM.pdf" download>Download Form</a>
-    </div>
-
-    <div class="error-banner" id="appError" role="alert"></div>
-
-    <form id="applicationForm" class="form-body" novalidate autocomplete="off">
-      <div style="position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden;" aria-hidden="true">
-        <label for="app_hp">Leave this field blank</label>
-        <input type="text" id="app_hp" name="app_hp" tabindex="-1" autocomplete="off">
-      </div>
-
-      <p class="section-label">Your Details</p>
-      <div class="field-grid">
-        <div class="field">
-          <label for="a_name">Name &amp; Surname <span class="req">*</span></label>
-          <input type="text" id="a_name" name="name" required autocomplete="name">
-          <span class="error-msg">Please enter your name and surname.</span>
-        </div>
-        <div class="field">
-          <label for="a_id">ID Number <span class="req">*</span></label>
-          <input type="text" id="a_id" name="idNumber" inputmode="numeric" maxlength="13" placeholder="13-digit RSA ID number" required>
-          <span class="error-msg">Please enter a valid 13-digit ID number.</span>
-        </div>
-
-        <div class="field">
-          <label for="a_contact">Contact Number <span class="req">*</span></label>
-          <input type="tel" id="a_contact" name="contactNumber" placeholder="0XX XXX XXXX" required autocomplete="tel">
-          <span class="error-msg">Please enter a valid contact number.</span>
-        </div>
-        <div class="field">
-          <label for="a_email">Email Address <span class="req">*</span></label>
-          <input type="email" id="a_email" name="email" required autocomplete="email">
-          <span class="error-msg">Please enter a valid email address.</span>
-        </div>
-
-        <div class="field">
-          <label for="a_province">Province <span class="req">*</span></label>
-          <select id="a_province" name="province" required>
-            <option value="">Select province</option>
-            <option>Eastern Cape</option>
-            <option>Free State</option>
-            <option>Gauteng</option>
-            <option>KwaZulu-Natal</option>
-            <option>Limpopo</option>
-            <option>Mpumalanga</option>
-            <option>Northern Cape</option>
-            <option>North West</option>
-            <option>Western Cape</option>
-          </select>
-          <span class="error-msg">Please select your province.</span>
-        </div>
-        <div class="field">
-          <label for="a_company">Company Name <span class="req">*</span></label>
-          <input type="text" id="a_company" name="companyName" required>
-          <span class="error-msg">Please enter your company name.</span>
-        </div>
-      </div>
-
-      <div class="divider"></div>
-
-      <p class="section-label">Attach Your Completed Form</p>
-      <div class="field span-2">
-        <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Choose a file to attach">
-          <input type="file" id="a_file" name="file" accept="application/pdf,image/jpeg,image/jpg,image/png">
-          <div class="dz-icon">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4M12 4l-4 4M12 4l4 4" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16v3a2 2 0 002 2h12a2 2 0 002-2v-3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="dz-text">Tap to choose a file, or drag it here</div>
-          <div class="dz-hint">PDF, JPG or PNG &middot; up to 15MB</div>
-        </div>
-        <div class="file-chosen" id="fileChosen">
-          <div>
-            <div class="name" id="fileChosenName"></div>
-            <div class="size" id="fileChosenSize"></div>
-          </div>
-          <button type="button" id="fileRemoveBtn">Remove</button>
-        </div>
-        <span class="error-msg" id="fileError" style="display:none;">Please attach a PDF, JPG or PNG file under 15MB.</span>
-      </div>
-
-      <div class="form-actions">
-        <button type="submit" class="btn btn-primary" id="appSubmitBtn">Upload &amp; Submit Application</button>
-      </div>
-    </form>
-
-    <div class="confirmation" id="appConfirmation">
-      <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-      <h4>Application Received</h4>
-      <p>Thank you. Your completed form and details have been sent to NATAWU and recorded. Please keep your reference number below — we've also emailed it to you.</p>
-      <div class="ref-box" id="appRefNumber">&mdash;</div>
-      <div><button type="button" class="btn-ghost" id="appResetBtn">Submit another application</button></div>
-    </div>
-  </section>
-
-  <div class="help-note">
-    <strong>Need help?</strong> Call 021 250 1641 / 073 834 8457, or email
-    <a href="mailto:wc@natawu.net.za">wc@natawu.net.za</a> and NATAWU staff will assist you directly.
-  </div>
-</main>
-
-<footer class="site-footer">
-  <div class="wrap">
-    <strong>NATAWU</strong> &middot; National African Transport &amp; Allied Workers Union &middot; Ref: LR2/6/2/3765<br>
-    Community House, 1st Floor, 41 Salt River, Cape Town, 7927 &middot; 021 250 1641 / 073 834 8457 &middot; wc@natawu.net.za
-  </div>
-</footer>
-
-<script>
-(function(){
-  "use strict";
-
-  /* =====================================================================
-     CONFIG
-     SCRIPT_URL is your deployed Google Apps Script Web App URL.
-     MAX_UPLOAD_MB must match CONFIG.MAX_UPLOAD_MB in google-apps-script.gs.
-     ===================================================================== */
-  var CONFIG = {
-    SCRIPT_URL: "https://script.google.com/macros/s/AKfycbx6ddkELnZJk-Zqj5bIKq6D-v1D-1a3X8nBUmethqg5YlOQyLK8UBs32ZGvHV9k524V/exec",
-    MIN_SECONDS_BEFORE_SUBMIT: 3,   // basic bot time-trap
-    MAX_UPLOAD_MB: 15               // must match CONFIG.MAX_UPLOAD_MB in google-apps-script.gs
-  };
-
-  function backendReady(){
-    // A real deployed Apps Script Web App URL always starts with this prefix.
-    return !!CONFIG.SCRIPT_URL && CONFIG.SCRIPT_URL.indexOf("https://script.google.com/") === 0;
-  }
-
-  function postToBackend(payload){
-    return fetch(CONFIG.SCRIPT_URL, {
-      method: "POST",
-      headers: { "Content-Type": "text/plain;charset=utf-8" }, // avoids CORS preflight against Apps Script
-      body: JSON.stringify(payload)
-    }).then(function(res){ return res.json(); });
-  }
-
-  function markInvalid(field){
-    field.classList.add("invalid");
-    var wrap = field.closest(".field");
-    if (wrap) wrap.classList.add("has-error");
-  }
-  function clearInvalid(field){
-    field.classList.remove("invalid");
-    var wrap = field.closest(".field");
-    if (wrap) wrap.classList.remove("has-error");
-  }
-
-  var form = document.getElementById("applicationForm");
-  var errorBanner = document.getElementById("appError");
-  var submitBtn = document.getElementById("appSubmitBtn");
-  var confirmation = document.getElementById("appConfirmation");
-  var refBox = document.getElementById("appRefNumber");
-  var dropzone = document.getElementById("dropzone");
-  var fileInput = document.getElementById("a_file");
-  var fileChosen = document.getElementById("fileChosen");
-  var fileChosenName = document.getElementById("fileChosenName");
-  var fileChosenSize = document.getElementById("fileChosenSize");
-  var fileError = document.getElementById("fileError");
-  var loadedAt = Date.now();
-  var submitting = false;
-  var selectedFile = null;
-
-  var ALLOWED_TYPES = ["application/pdf","image/jpeg","image/jpg","image/png"];
-
-  function formatSize(bytes){
-    if (bytes < 1024*1024) return Math.max(1, Math.round(bytes/1024)) + " KB";
-    return (bytes/(1024*1024)).toFixed(1) + " MB";
-  }
-
-  function setFile(file){
-    fileError.style.display = "none";
-    dropzone.classList.remove("invalid");
-    if (!file){ selectedFile = null; fileChosen.classList.remove("show"); return; }
-
-    var typeOk = ALLOWED_TYPES.indexOf(file.type) !== -1 || /\.(pdf|jpe?g|png)$/i.test(file.name);
-    var sizeOk = file.size <= CONFIG.MAX_UPLOAD_MB * 1024 * 1024;
-
-    if (!typeOk || !sizeOk){
-      selectedFile = null;
-      fileChosen.classList.remove("show");
-      fileError.style.display = "block";
-      fileError.textContent = !typeOk
-        ? "Please attach a PDF, JPG or PNG file."
-        : "That file is too large. Please attach a file under " + CONFIG.MAX_UPLOAD_MB + "MB.";
-      return;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NATAWU | Apply for Membership</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --green: #153D25;
+      --green-dark: #0C2617;
+      --green-mid: #1F5C37;
+      --red: #A31E27;
+      --tan: #C69A54;
+      --tan-light: #F4E9D4;
+      --paper: #FAF7F0;
+      --card: #FFFFFF;
+      --ink: #1E2420;
+      --ink-soft: #54594F;
+      --border: #E1D6BE;
+      --danger: #B3261E;
+      --danger-bg: #FBEAE9;
+      --success: #1D6B3B;
+      --success-bg: #E8F3EC;
+      --radius: 10px;
+      --shadow: 0 2px 10px rgba(21, 61, 37, 0.08);
+      --font-display: 'Barlow Condensed', sans-serif;
+      --font-body: 'Inter', sans-serif;
     }
 
-    selectedFile = file;
-    fileChosenName.textContent = file.name;
-    fileChosenSize.textContent = formatSize(file.size);
-    fileChosen.classList.add("show");
-  }
-
-  dropzone.addEventListener("click", function(){ fileInput.click(); });
-  dropzone.addEventListener("keydown", function(e){
-    if (e.key === "Enter" || e.key === " "){ e.preventDefault(); fileInput.click(); }
-  });
-  fileInput.addEventListener("change", function(){ setFile(fileInput.files[0] || null); });
-
-  ["dragenter","dragover"].forEach(function(evt){
-    dropzone.addEventListener(evt, function(e){ e.preventDefault(); dropzone.classList.add("drag"); });
-  });
-  ["dragleave","drop"].forEach(function(evt){
-    dropzone.addEventListener(evt, function(e){ e.preventDefault(); dropzone.classList.remove("drag"); });
-  });
-  dropzone.addEventListener("drop", function(e){
-    var file = e.dataTransfer.files && e.dataTransfer.files[0];
-    if (file) setFile(file);
-  });
-
-  document.getElementById("fileRemoveBtn").addEventListener("click", function(e){
-    e.stopPropagation();
-    fileInput.value = "";
-    setFile(null);
-  });
-
-  function fileToBase64(file){
-    return new Promise(function(resolve, reject){
-      var reader = new FileReader();
-      reader.onload = function(){ resolve(String(reader.result).split(",")[1] || ""); };
-      reader.onerror = function(){ reject(new Error("Could not read the selected file.")); };
-      reader.readAsDataURL(file);
-    });
-  }
-
-  function validate(){
-    var ok = true;
-    var name = form.querySelector("#a_name");
-    var id = form.querySelector("#a_id");
-    var contact = form.querySelector("#a_contact");
-    var email = form.querySelector("#a_email");
-    var province = form.querySelector("#a_province");
-    var company = form.querySelector("#a_company");
-
-    [name, id, contact, email, province, company].forEach(clearInvalid);
-
-    if (!name.value.trim()){ markInvalid(name); ok = false; }
-    if (!/^[0-9]{13}$/.test(id.value.trim())){ markInvalid(id); ok = false; }
-    if (!/^[0-9+\s]{9,15}$/.test(contact.value.trim())){ markInvalid(contact); ok = false; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())){ markInvalid(email); ok = false; }
-    if (!province.value){ markInvalid(province); ok = false; }
-    if (!company.value.trim()){ markInvalid(company); ok = false; }
-
-    if (!selectedFile){
-      fileError.style.display = "block";
-      fileError.textContent = "Please attach a PDF, JPG or PNG file under " + CONFIG.MAX_UPLOAD_MB + "MB.";
-      ok = false;
+    * {
+      box-sizing: border-box;
     }
 
-    return ok;
-  }
-
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-    if (submitting) return;
-    errorBanner.classList.remove("show");
-
-    if (!validate()){
-      errorBanner.textContent = "Please correct the highlighted fields before continuing.";
-      errorBanner.classList.add("show");
-      return;
+    html,
+    body {
+      margin: 0;
+      padding: 0;
     }
 
-    var honeypotFilled = document.getElementById("app_hp").value.trim().length > 0;
-    var tooFast = (Date.now() - loadedAt) < (CONFIG.MIN_SECONDS_BEFORE_SUBMIT * 1000);
-
-    if (honeypotFilled){
-      showConfirmation("N/A");
-      return;
-    }
-    if (tooFast){
-      errorBanner.textContent = "Please take a moment to review your details before submitting.";
-      errorBanner.classList.add("show");
-      return;
-    }
-    if (!backendReady()){
-      errorBanner.textContent = "This form is not yet connected to the NATAWU backend (Google Apps Script URL missing). See SETUP-GUIDE.md.";
-      errorBanner.classList.add("show");
-      return;
+    body {
+      font-family: var(--font-body);
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
     }
 
-    submitting = true;
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Submitting...";
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-    fileToBase64(selectedFile).then(function(base64){
-      var payload = {
-        action: "application",
-        name: form.querySelector("#a_name").value.trim(),
-        idNumber: form.querySelector("#a_id").value.trim(),
-        contactNumber: form.querySelector("#a_contact").value.trim(),
-        email: form.querySelector("#a_email").value.trim(),
-        province: form.querySelector("#a_province").value,
-        companyName: form.querySelector("#a_company").value.trim(),
-        fileName: selectedFile.name,
-        fileMimeType: selectedFile.type || "application/octet-stream",
-        fileBase64: base64
-      };
-      return postToBackend(payload);
-    }).then(function(result){
-      if (result && result.success){
-        showConfirmation(result.applicationNumber || "PENDING");
-      } else {
-        throw new Error((result && result.message) || "Submission failed.");
+    a {
+      color: var(--green-mid);
+    }
+
+    .wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+
+    /* ===== HEADER ===== */
+    .site-header {
+      background: linear-gradient(180deg, var(--green) 0%, var(--green-dark) 100%);
+      color: #fff;
+      padding: 22px 0 26px;
+      border-bottom: 5px solid var(--tan);
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .header-top .logo {
+      height: 64px;
+      width: 64px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 8px;
+      padding: 6px;
+      flex-shrink: 0;
+    }
+
+    .header-titles {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .header-titles .union-name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--tan-light);
+      margin: 0 0 2px;
+    }
+
+    .header-titles h1 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(26px, 5vw, 38px);
+      letter-spacing: .02em;
+      margin: 0;
+      text-transform: uppercase;
+      line-height: 1.05;
+    }
+
+    .header-meta {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+      font-size: 13px;
+      color: #EDE6D6;
+    }
+
+    .header-meta strong {
+      color: #fff;
+    }
+
+    .header-instruction {
+      margin-top: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: .01em;
+      color: #fff;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+
+    .header-instruction svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    main {
+      padding: 30px 0 60px;
+    }
+
+    .intro {
+      text-align: center;
+      margin: 0 0 26px;
+    }
+
+    .intro h2 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 26px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin: 0 0 8px;
+    }
+
+    .intro p {
+      color: var(--ink-soft);
+      font-size: 15px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* ===== Card ===== */
+    .form-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px 22px 30px;
+      margin-bottom: 26px;
+    }
+
+    @media (min-width:640px) {
+      .form-card {
+        padding: 34px 38px 38px;
       }
-    }).catch(function(err){
-      submitting = false;
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Upload & Submit Application";
-      errorBanner.textContent = "We could not submit your application (" + err.message + "). Please check your connection and try again.";
-      errorBanner.classList.add("show");
-      errorBanner.scrollIntoView({behavior:"smooth", block:"center"});
-    });
-  });
+    }
 
-  function showConfirmation(ref){
-    form.classList.add("hide");
-    refBox.textContent = ref;
-    confirmation.classList.add("show");
-    confirmation.scrollIntoView({behavior:"smooth", block:"center"});
-  }
+    /* ===== Steps list ===== */
+    .steps-list {
+      list-style: none;
+      margin: 0 0 24px;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
 
-  document.getElementById("appResetBtn").addEventListener("click", function(){
-    form.reset();
-    setFile(null);
-    form.classList.remove("hide");
-    confirmation.classList.remove("show");
-    submitting = false;
-    loadedAt = Date.now();
-    submitBtn.disabled = false;
-    submitBtn.textContent = "Upload & Submit Application";
-    form.scrollIntoView({behavior:"smooth", block:"start"});
-  });
-})();
-</script>
+    .steps-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: var(--paper);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    .steps-list .num {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .steps-list b {
+      color: var(--green);
+    }
+
+    /* ===== Two-option layout (hand vs electronic) ===== */
+    .option-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+
+    @media (min-width:640px) {
+      .option-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .option-col {
+      background: var(--paper);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 16px 4px;
+    }
+
+    .option-col .steps-list {
+      margin-bottom: 12px;
+    }
+
+    .option-col .steps-list li {
+      background: #fff;
+    }
+
+    .option-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+      color: var(--green-mid);
+      margin: 0 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .option-title .tag {
+      font-family: var(--font-body);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      background: var(--tan);
+      color: #241B08;
+      border-radius: 99px;
+      padding: 3px 9px;
+    }
+
+    .option-note {
+      text-align: center;
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      margin: 4px 0 22px;
+    }
+
+    .download-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      background: var(--tan-light);
+      border: 1.5px dashed var(--tan);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin: 0 0 20px;
+    }
+
+    .download-row p {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--ink);
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .section-label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 19px;
+      text-transform: uppercase;
+      letter-spacing: .01em;
+      margin: 0 0 16px;
+      color: var(--green);
+      border-bottom: 3px solid var(--tan);
+      padding-bottom: 9px;
+    }
+
+    /* ===== Fields ===== */
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px 20px;
+    }
+
+    @media (min-width:600px) {
+      .field-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .field-grid .span-2 {
+        grid-column: 1 / -1;
+      }
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .field label .req {
+      color: var(--red);
+      margin-left: 2px;
+    }
+
+    .field label .hint {
+      font-weight: 500;
+      color: var(--ink-soft);
+      font-size: 12px;
+    }
+
+    .field input[type=text],
+    .field input[type=tel],
+    .field input[type=email],
+    .field select {
+      font-family: var(--font-body);
+      font-size: 15px;
+      padding: 12px 13px;
+      min-height: 48px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      width: 100%;
+      transition: border-color .15s, box-shadow .15s;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      outline: none;
+      border-color: var(--green-mid);
+      box-shadow: 0 0 0 3px rgba(31, 92, 55, 0.15);
+    }
+
+    .field input.invalid,
+    .field select.invalid {
+      border-color: var(--danger);
+      background: var(--danger-bg);
+    }
+
+    .field .error-msg {
+      display: none;
+      font-size: 12px;
+      color: var(--danger);
+      font-weight: 600;
+    }
+
+    .field.has-error .error-msg {
+      display: block;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 28px 0;
+    }
+
+    /* ===== File upload dropzone ===== */
+    .dropzone {
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+      padding: 24px 18px;
+      text-align: center;
+      background: var(--paper);
+      cursor: pointer;
+      transition: border-color .15s, background .15s;
+    }
+
+    .dropzone:hover,
+    .dropzone.drag {
+      border-color: var(--green-mid);
+      background: var(--tan-light);
+    }
+
+    .dropzone input[type=file] {
+      display: none;
+    }
+
+    .dropzone .dz-icon {
+      margin: 0 auto 8px;
+      color: var(--green-mid);
+    }
+
+    .dropzone .dz-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .dropzone .dz-hint {
+      font-size: 12.5px;
+      color: var(--ink-soft);
+      margin-top: 4px;
+    }
+
+    .file-chosen {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 12px;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13.5px;
+    }
+
+    .file-chosen.show {
+      display: flex;
+    }
+
+    .file-chosen .name {
+      font-weight: 700;
+      color: var(--ink);
+      word-break: break-all;
+    }
+
+    .file-chosen .size {
+      color: var(--ink-soft);
+      font-size: 12px;
+    }
+
+    .file-chosen button {
+      background: none;
+      border: none;
+      color: var(--red);
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 12.5px;
+      text-decoration: underline;
+      flex-shrink: 0;
+    }
+
+    /* ===== Buttons ===== */
+    .btn {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 26px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all .15s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+    }
+
+    @media (min-width:480px) {
+      .btn {
+        width: auto;
+      }
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--green-mid);
+    }
+
+    .btn-primary:disabled {
+      background: #9AA79E;
+      cursor: not-allowed;
+    }
+
+    .btn-gold {
+      background: var(--tan);
+      color: #241B08;
+    }
+
+    .btn-gold:hover {
+      background: #D6B26C;
+    }
+
+    .form-actions {
+      margin-top: 26px;
+    }
+
+    /* ===== Banners ===== */
+    .error-banner {
+      display: none;
+      background: var(--danger-bg);
+      border: 1.5px solid var(--danger);
+      color: var(--danger);
+      padding: 14px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .error-banner.show {
+      display: block;
+    }
+
+    /* ===== Confirmation ===== */
+    .confirmation {
+      display: none;
+      text-align: center;
+      padding: 6px 0 4px;
+    }
+
+    .confirmation.show {
+      display: block;
+    }
+
+    .confirmation .icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--success-bg);
+      color: var(--success);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+    }
+
+    .confirmation h4 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin: 0 0 8px;
+    }
+
+    .confirmation p {
+      color: var(--ink-soft);
+      font-size: 14.5px;
+      max-width: 460px;
+      margin: 0 auto 16px;
+    }
+
+    .ref-box {
+      display: inline-block;
+      background: var(--tan-light);
+      border: 1.5px dashed var(--tan);
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: .03em;
+      color: var(--green);
+      margin: 2px 0 18px;
+    }
+
+    .confirmation .btn-ghost {
+      background: none;
+      border: 1.5px solid var(--border);
+      color: var(--ink);
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13.5px;
+    }
+
+    .confirmation .btn-ghost:hover {
+      border-color: var(--green-mid);
+      color: var(--green-mid);
+    }
+
+    .form-body.hide {
+      display: none;
+    }
+
+    .help-note {
+      text-align: center;
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      margin-top: 6px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+    }
+
+    .help-note strong {
+      color: var(--green);
+    }
+
+    footer.site-footer {
+      background: var(--green-dark);
+      color: #CFE0D3;
+      padding: 26px 0;
+      font-size: 12.5px;
+      text-align: center;
+    }
+
+    footer.site-footer strong {
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="background:#123b27;color:#fff;padding:10px 16px;text-align:center;font:700 13px system-ui"><a
+      href="index.html" style="color:#fff">&larr; Back to NATAWU Website</a> &nbsp; | &nbsp; <a href="forms.html"
+      style="color:#f0d58b">Forms</a></div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-top">
+        <img class="logo" src="images/cd23197be1ec1a989d1b0f8f8c7481d8044684c5.png" alt="NATAWU logo"
+          onerror="this.style.display='none'">
+        <div class="header-titles">
+          <p class="union-name">National African Transport &amp; Allied Workers Union</p>
+          <h1>Apply for Membership</h1>
+        </div>
+      </div>
+      <div class="header-meta">
+        <span>Reference No: <strong>LR2/6/2/3765</strong></span>
+        <span>Tel: <strong>021 250 1641 / 073 834 8457</strong></span>
+        <span>Email: <strong>wc@natawu.net.za</strong></span>
+        <span>Community House, 1st Floor, 41 Salt River, Cape Town, 7927</span>
+      </div>
+      <div class="header-instruction">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M12 8v5M12 16h.01" stroke-linecap="round" />
+          <circle cx="12" cy="12" r="10" />
+        </svg>
+        <span>Fill in your details, attach your completed form, then press Submit. That's it — one step.</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="intro">
+      <h2>Membership Application</h2>
+      <p>Download the official form, complete it either by hand or on-screen, then come back here to enter your details and attach it. You'll get a reference number as soon as you submit.</p>
+    </div>
+
+    <section class="form-card" id="applicationCard">
+      <p class="section-label" style="border-bottom:none;margin-bottom:4px;">Before You Start</p>
+      <p class="option-note" style="margin-top:0;margin-bottom:18px;">Choose whichever is easier for you — both paths end at the same Submit button below.</p>
+
+      <div class="option-grid">
+        <div class="option-col">
+          <p class="option-title"><span class="tag">A</span> Complete by Hand</p>
+          <ol class="steps-list">
+            <li><span class="num">1</span><span>Download the form below.</span></li>
+            <li><span class="num">2</span><span><b>Print and complete</b> it in CAPITAL LETTERS using BLACK ink, then sign it.</span></li>
+            <li><span class="num">3</span><span><b>Take a clear photo</b> (or scan) of every completed page — make sure the writing is easy to read.</span></li>
+          </ol>
+        </div>
+        <div class="option-col">
+          <p class="option-title"><span class="tag">B</span> Complete Electronically</p>
+          <ol class="steps-list">
+            <li><span class="num">1</span><span>Download the same form below.</span></li>
+            <li><span class="num">2</span><span><b>Type your details directly into it</b> on your computer or phone — every field and box is fillable, no printing needed.</span></li>
+            <li><span class="num">3</span><span><b>Sign it on-screen</b> using Fill &amp; Sign in Adobe Acrobat Reader (free) or Preview's Markup tool on Mac/iPhone, then save it.</span></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="download-row">
+        <p>Membership Application Form &middot; PDF, fillable on-screen or printable</p>
+        <a class="btn btn-gold" href="files/MEMBERSHIP_APPLICATION_FORM.pdf" download>Download Form</a>
+      </div>
+
+      <p class="option-note"><b>Either way</b> — once it's ready, attach the file below and press Submit.</p>
+
+      <div class="error-banner" id="appError" role="alert"></div>
+
+      <form id="applicationForm" class="form-body" novalidate autocomplete="off">
+        <div style="position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden;" aria-hidden="true">
+          <label for="app_hp">Leave this field blank</label>
+          <input type="text" id="app_hp" name="app_hp" tabindex="-1" autocomplete="off">
+        </div>
+
+        <p class="section-label">Your Details</p>
+        <div class="field-grid">
+          <div class="field">
+            <label for="a_name">Name &amp; Surname <span class="req">*</span></label>
+            <input type="text" id="a_name" name="name" required autocomplete="name">
+            <span class="error-msg">Please enter your name and surname.</span>
+          </div>
+          <div class="field">
+            <label for="a_id">ID Number <span class="req">*</span></label>
+            <input type="text" id="a_id" name="idNumber" inputmode="numeric" maxlength="13"
+              placeholder="13-digit RSA ID number" required>
+            <span class="error-msg">Please enter a valid 13-digit ID number.</span>
+          </div>
+
+          <div class="field">
+            <label for="a_contact">Contact Number <span class="req">*</span></label>
+            <input type="tel" id="a_contact" name="contactNumber" placeholder="0XX XXX XXXX" required
+              autocomplete="tel">
+            <span class="error-msg">Please enter a valid contact number.</span>
+          </div>
+          <div class="field">
+            <label for="a_email">Email Address <span class="req">*</span></label>
+            <input type="email" id="a_email" name="email" required autocomplete="email">
+            <span class="error-msg">Please enter a valid email address.</span>
+          </div>
+
+          <div class="field">
+            <label for="a_province">Province <span class="req">*</span></label>
+            <select id="a_province" name="province" required>
+              <option value="">Select province</option>
+              <option>Eastern Cape</option>
+              <option>Free State</option>
+              <option>Gauteng</option>
+              <option>KwaZulu-Natal</option>
+              <option>Limpopo</option>
+              <option>Mpumalanga</option>
+              <option>Northern Cape</option>
+              <option>North West</option>
+              <option>Western Cape</option>
+            </select>
+            <span class="error-msg">Please select your province.</span>
+          </div>
+          <div class="field">
+            <label for="a_company">Company Name <span class="req">*</span></label>
+            <input type="text" id="a_company" name="companyName" required>
+            <span class="error-msg">Please enter your company name.</span>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <p class="section-label">Attach Your Completed Form</p>
+        <div class="field span-2">
+          <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Choose a file to attach">
+            <input type="file" id="a_file" name="file" accept="application/pdf,image/jpeg,image/jpg,image/png">
+            <div class="dz-icon">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 16V4M12 4l-4 4M12 4l4 4" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M4 16v3a2 2 0 002 2h12a2 2 0 002-2v-3" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="dz-text">Tap to choose a file, or drag it here</div>
+            <div class="dz-hint">PDF, JPG or PNG &middot; up to 15MB</div>
+          </div>
+          <div class="file-chosen" id="fileChosen">
+            <div>
+              <div class="name" id="fileChosenName"></div>
+              <div class="size" id="fileChosenSize"></div>
+            </div>
+            <button type="button" id="fileRemoveBtn">Remove</button>
+          </div>
+          <span class="error-msg" id="fileError" style="display:none;">Please attach a PDF, JPG or PNG file under
+            15MB.</span>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" id="appSubmitBtn">Upload &amp; Submit Application</button>
+        </div>
+      </form>
+
+      <div class="confirmation" id="appConfirmation">
+        <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.5">
+            <path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg></div>
+        <h4>Application Received</h4>
+        <p>Thank you. Your completed form and details have been sent to NATAWU and recorded. Please keep your reference
+          number below — we've also emailed it to you.</p>
+        <div class="ref-box" id="appRefNumber">&mdash;</div>
+        <div><button type="button" class="btn-ghost" id="appResetBtn">Submit another application</button></div>
+      </div>
+    </section>
+
+    <div class="help-note">
+      <strong>Need help?</strong> Call 021 250 1641 / 073 834 8457, or email
+      <a href="mailto:sgift8083@gmail.com">wc@natawu.net.za</a> and NATAWU staff will assist you directly.
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <strong>NATAWU</strong> &middot; National African Transport &amp; Allied Workers Union &middot; Ref:
+      LR2/6/2/3765<br>
+      Community House, 1st Floor, 41 Salt River, Cape Town, 7927 &middot; 021 250 1641 / 073 834 8457 &middot;
+      sgift8083@gmail.com
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+
+      /* =====================================================================
+         CONFIG
+         Replace SCRIPT_URL with your deployed Google Apps Script Web App URL.
+         See SETUP-GUIDE.md for full deployment instructions.
+         MAX_UPLOAD_MB must match CONFIG.MAX_UPLOAD_MB in google-apps-script.gs.
+         ===================================================================== */
+      var CONFIG = {
+        SCRIPT_URL: "https://script.google.com/macros/s/AKfycbx6ddkELnZJk-Zqj5bIKq6D-v1D-1a3X8nBUmethqg5YlOQyLK8UBs32ZGvHV9k524V/exec",
+        MIN_SECONDS_BEFORE_SUBMIT: 3,   // basic bot time-trap
+        MAX_UPLOAD_MB: 15               // must match CONFIG.MAX_UPLOAD_MB in google-apps-script.gs
+      };
+
+      function backendReady() {
+        return CONFIG.SCRIPT_URL && CONFIG.SCRIPT_URL.indexOf("PASTE_YOUR") !== 0;
+      }
+
+      function postToBackend(payload) {
+        return fetch(CONFIG.SCRIPT_URL, {
+          method: "POST",
+          headers: {"Content-Type": "text/plain;charset=utf-8"}, // avoids CORS preflight against Apps Script
+          body: JSON.stringify(payload)
+        }).then(function (res) {return res.json();});
+      }
+
+      function markInvalid(field) {
+        field.classList.add("invalid");
+        var wrap = field.closest(".field");
+        if (wrap) wrap.classList.add("has-error");
+      }
+      function clearInvalid(field) {
+        field.classList.remove("invalid");
+        var wrap = field.closest(".field");
+        if (wrap) wrap.classList.remove("has-error");
+      }
+
+      var form = document.getElementById("applicationForm");
+      var errorBanner = document.getElementById("appError");
+      var submitBtn = document.getElementById("appSubmitBtn");
+      var confirmation = document.getElementById("appConfirmation");
+      var refBox = document.getElementById("appRefNumber");
+      var dropzone = document.getElementById("dropzone");
+      var fileInput = document.getElementById("a_file");
+      var fileChosen = document.getElementById("fileChosen");
+      var fileChosenName = document.getElementById("fileChosenName");
+      var fileChosenSize = document.getElementById("fileChosenSize");
+      var fileError = document.getElementById("fileError");
+      var loadedAt = Date.now();
+      var submitting = false;
+      var selectedFile = null;
+
+      var ALLOWED_TYPES = ["application/pdf", "image/jpeg", "image/jpg", "image/png"];
+
+      function formatSize(bytes) {
+        if (bytes < 1024 * 1024) return Math.max(1, Math.round(bytes / 1024)) + " KB";
+        return (bytes / (1024 * 1024)).toFixed(1) + " MB";
+      }
+
+      function setFile(file) {
+        fileError.style.display = "none";
+        dropzone.classList.remove("invalid");
+        if (!file) {selectedFile = null; fileChosen.classList.remove("show"); return;}
+
+        var typeOk = ALLOWED_TYPES.indexOf(file.type) !== -1 || /\.(pdf|jpe?g|png)$/i.test(file.name);
+        var sizeOk = file.size <= CONFIG.MAX_UPLOAD_MB * 1024 * 1024;
+
+        if (!typeOk || !sizeOk) {
+          selectedFile = null;
+          fileChosen.classList.remove("show");
+          fileError.style.display = "block";
+          fileError.textContent = !typeOk
+            ? "Please attach a PDF, JPG or PNG file."
+            : "That file is too large. Please attach a file under " + CONFIG.MAX_UPLOAD_MB + "MB.";
+          return;
+        }
+
+        selectedFile = file;
+        fileChosenName.textContent = file.name;
+        fileChosenSize.textContent = formatSize(file.size);
+        fileChosen.classList.add("show");
+      }
+
+      dropzone.addEventListener("click", function () {fileInput.click();});
+      dropzone.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {e.preventDefault(); fileInput.click();}
+      });
+      fileInput.addEventListener("change", function () {setFile(fileInput.files[0] || null);});
+
+      ["dragenter", "dragover"].forEach(function (evt) {
+        dropzone.addEventListener(evt, function (e) {e.preventDefault(); dropzone.classList.add("drag");});
+      });
+      ["dragleave", "drop"].forEach(function (evt) {
+        dropzone.addEventListener(evt, function (e) {e.preventDefault(); dropzone.classList.remove("drag");});
+      });
+      dropzone.addEventListener("drop", function (e) {
+        var file = e.dataTransfer.files && e.dataTransfer.files[0];
+        if (file) setFile(file);
+      });
+
+      document.getElementById("fileRemoveBtn").addEventListener("click", function (e) {
+        e.stopPropagation();
+        fileInput.value = "";
+        setFile(null);
+      });
+
+      function fileToBase64(file) {
+        return new Promise(function (resolve, reject) {
+          var reader = new FileReader();
+          reader.onload = function () {resolve(String(reader.result).split(",")[1] || "");};
+          reader.onerror = function () {reject(new Error("Could not read the selected file."));};
+          reader.readAsDataURL(file);
+        });
+      }
+
+      function validate() {
+        var ok = true;
+        var name = form.querySelector("#a_name");
+        var id = form.querySelector("#a_id");
+        var contact = form.querySelector("#a_contact");
+        var email = form.querySelector("#a_email");
+        var province = form.querySelector("#a_province");
+        var company = form.querySelector("#a_company");
+
+        [name, id, contact, email, province, company].forEach(clearInvalid);
+
+        if (!name.value.trim()) {markInvalid(name); ok = false;}
+        if (!/^[0-9]{13}$/.test(id.value.trim())) {markInvalid(id); ok = false;}
+        if (!/^[0-9+\s]{9,15}$/.test(contact.value.trim())) {markInvalid(contact); ok = false;}
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {markInvalid(email); ok = false;}
+        if (!province.value) {markInvalid(province); ok = false;}
+        if (!company.value.trim()) {markInvalid(company); ok = false;}
+
+        if (!selectedFile) {
+          fileError.style.display = "block";
+          fileError.textContent = "Please attach a PDF, JPG or PNG file under " + CONFIG.MAX_UPLOAD_MB + "MB.";
+          ok = false;
+        }
+
+        return ok;
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (submitting) return;
+        errorBanner.classList.remove("show");
+
+        if (!validate()) {
+          errorBanner.textContent = "Please correct the highlighted fields before continuing.";
+          errorBanner.classList.add("show");
+          return;
+        }
+
+        var honeypotFilled = document.getElementById("app_hp").value.trim().length > 0;
+        var tooFast = (Date.now() - loadedAt) < (CONFIG.MIN_SECONDS_BEFORE_SUBMIT * 1000);
+
+        if (honeypotFilled) {
+          showConfirmation("N/A");
+          return;
+        }
+        if (tooFast) {
+          errorBanner.textContent = "Please take a moment to review your details before submitting.";
+          errorBanner.classList.add("show");
+          return;
+        }
+        if (!backendReady()) {
+          errorBanner.textContent = "This form is not yet connected to the NATAWU backend (Google Apps Script URL missing). See SETUP-GUIDE.md.";
+          errorBanner.classList.add("show");
+          return;
+        }
+
+        submitting = true;
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Submitting...";
+
+        fileToBase64(selectedFile).then(function (base64) {
+          var payload = {
+            action: "application",
+            name: form.querySelector("#a_name").value.trim(),
+            idNumber: form.querySelector("#a_id").value.trim(),
+            contactNumber: form.querySelector("#a_contact").value.trim(),
+            email: form.querySelector("#a_email").value.trim(),
+            province: form.querySelector("#a_province").value,
+            companyName: form.querySelector("#a_company").value.trim(),
+            fileName: selectedFile.name,
+            fileMimeType: selectedFile.type || "application/octet-stream",
+            fileBase64: base64
+          };
+          return postToBackend(payload);
+        }).then(function (result) {
+          if (result && result.success) {
+            showConfirmation(result.applicationNumber || "PENDING");
+          } else {
+            throw new Error((result && result.message) || "Submission failed.");
+          }
+        }).catch(function (err) {
+          submitting = false;
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Upload & Submit Application";
+          errorBanner.textContent = "We could not submit your application (" + err.message + "). Please check your connection and try again.";
+          errorBanner.classList.add("show");
+          errorBanner.scrollIntoView({behavior: "smooth", block: "center"});
+        });
+      });
+
+      function showConfirmation(ref) {
+        form.classList.add("hide");
+        refBox.textContent = ref;
+        confirmation.classList.add("show");
+        confirmation.scrollIntoView({behavior: "smooth", block: "center"});
+      }
+
+      document.getElementById("appResetBtn").addEventListener("click", function () {
+        form.reset();
+        setFile(null);
+        form.classList.remove("hide");
+        confirmation.classList.remove("show");
+        submitting = false;
+        loadedAt = Date.now();
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Upload & Submit Application";
+        form.scrollIntoView({behavior: "smooth", block: "start"});
+      });
+    })();
+  </script>
 </body>
+
 </html>
